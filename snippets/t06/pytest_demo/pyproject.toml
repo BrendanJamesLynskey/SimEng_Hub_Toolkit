@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+markers = ["slow: long runs, excluded from the quick suite (run with -m slow)"]
+addopts = "-ra -q -m 'not slow'"
+xfail_strict = true
