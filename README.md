@@ -243,7 +243,7 @@ Every concept the decks rely on, with links to the slides that explain it in dep
 ## Where this fits
 
 * Indexed from the [Software hub](https://github.com/BrendanJamesLynskey/Software) and the [Hardware hub](https://github.com/BrendanJamesLynskey/Hardware).
-* Interview questions: [Interview_Rust](https://github.com/BrendanJamesLynskey/Interview_Rust), [Interview_CPP](https://github.com/BrendanJamesLynskey/Interview_CPP), [Interview_SoC_Architecture](https://github.com/BrendanJamesLynskey/Interview_SoC_Architecture), [Interview_Software_Testing](https://github.com/BrendanJamesLynskey/Interview_Software_Testing), [Interview_CI_CD](https://github.com/BrendanJamesLynskey/Interview_CI_CD), [Interview_SystemVerilog](https://github.com/BrendanJamesLynskey/Interview_SystemVerilog), [Interview_Technical_Leadership](https://github.com/BrendanJamesLynskey/Interview_Technical_Leadership).
+* Interview questions: [Interview_Simulation](https://github.com/BrendanJamesLynskey/Interview_Simulation) (simulation and performance modelling across all three series, with answers linking these decks), [Interview_Rust](https://github.com/BrendanJamesLynskey/Interview_Rust), [Interview_CPP](https://github.com/BrendanJamesLynskey/Interview_CPP), [Interview_SoC_Architecture](https://github.com/BrendanJamesLynskey/Interview_SoC_Architecture), [Interview_Software_Testing](https://github.com/BrendanJamesLynskey/Interview_Software_Testing), [Interview_CI_CD](https://github.com/BrendanJamesLynskey/Interview_CI_CD), [Interview_SystemVerilog](https://github.com/BrendanJamesLynskey/Interview_SystemVerilog), [Interview_Technical_Leadership](https://github.com/BrendanJamesLynskey/Interview_Technical_Leadership).
 
 ## Licence
 
