@@ -308,6 +308,8 @@
     </dl>
     <h3>Pipelines and Jenkins</h3>
     <dl class="gloss">
+        <dt id="g-jenkins">Jenkins: controller, agents, plugins</dt>
+        <dd>A self-hosted automation server. The controller (web UI, build queue, credentials, plugins) schedules pipeline runs onto the executors of agents; almost every feature, Pipeline itself included, is a plugin.<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/Introduction_to_Jenkins/#/3">Introduction to Jenkins &middot; architecture: controller, agents, executors</a> &middot; <a href="https://brendanjameslynskey.github.io/Introduction_to_Jenkins/#/4">Introduction to Jenkins &middot; plugins, the update centre and JENKINS_HOME</a> &middot; <a href="https://brendanjameslynskey.github.io/SimEng_07_Jenkins_for_Simulation_Teams/#slide-03">SimEng 07 &middot; agents, labels and the tools on them</a></span></dd>
         <dt id="g-pipelinestyles">Declarative and scripted pipelines</dt>
         <dd>A Jenkinsfile is either declarative (a fixed structure of agent, parameters, stages and post conditions that Jenkins validates and draws) or scripted (Groovy code inside <code>node { }</code>, with loops and try/catch).<span class="where">Explained in: <a href="https://brendanjameslynskey.github.io/SimEng_07_Jenkins_for_Simulation_Teams/#slide-02">SimEng 07 &middot; declarative and scripted pipelines</a></span></dd>
         <dt id="g-agents">Agents and labels</dt>
