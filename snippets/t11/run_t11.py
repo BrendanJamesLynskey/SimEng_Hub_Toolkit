@@ -5,7 +5,8 @@ Run on an otherwise idle machine (timings are the point):
     python run_t11.py OUTDIR       # writes OUTDIR/*.folded, *.svg, results.json
 
 Needs: py-spy, valgrind (cachegrind), the disagg-sim and memsim packages, and a release
-build of Rust_DES_Kernel's disagg-rs.
+build of Rust_DES_Kernel's disagg-rs. perf runs only if kernel.perf_event_paranoid allows it
+(it was 4 when this deck was first written; an administrator set it to 1 on 2026-10-03).
 """
 
 from __future__ import annotations
@@ -43,11 +44,94 @@ def lscpu():
 
 
 # ── 1. perf, as an unprivileged user ─────────────────────────────────────
+PERF_EVENTS = ["task-clock", "cycles", "instructions", "cache-references", "cache-misses", "branches", "branch-misses"]
+RUST_PERF = [str(RUST), "--n", "20000", "--rate", "4", "--seed", "1"]       # long enough for ~1,600 samples
+# A profiling build with frame pointers (same code, same release profile):
+#   RUSTFLAGS="-C force-frame-pointers=yes" cargo build --release --bin disagg-rs --target-dir target/fp
+# DWARF unwinding of the ordinary release build lost the callers of most samples.
+RUST_FP = SANDBOX / "Rust_DES_Kernel" / "target" / "fp" / "release" / "disagg-rs"
+
+
 def perf_check():
     p = run(["perf", "stat", "-e", "cycles,instructions", "--", "true"])
     para = Path("/proc/sys/kernel/perf_event_paranoid").read_text().strip()
     first = next((ln for ln in p.stderr.splitlines() if "paranoid" in ln.lower()), p.stderr.strip()[:200])
-    R["perf"] = {"paranoid": para, "exit": p.returncode, "message": first}
+    R["perf"] = {"paranoid": para, "exit": p.returncode, "message": first if p.returncode else "",
+                 "version": run(["perf", "--version"]).stdout.strip()}
+    return p.returncode == 0
+
+
+def perf_stat(name, cmd, repeats=5):
+    """Hardware counters, averaged over runs; `-x ,` gives value,unit,event,variance,..."""
+    p = run(["perf", "stat", "-x", ",", "-r", str(repeats), "-e", ",".join(PERF_EVENTS), "--", *cmd])
+    ev = {}
+    for ln in p.stderr.splitlines():
+        f = ln.split(",")
+        if len(f) > 3 and f[2] in PERF_EVENTS:
+            try:
+                ev[f[2]] = {"value": float(f[0]), "var_pct": f[3].rstrip("%")}
+            except ValueError:
+                ev[f[2]] = {"value": None, "var_pct": f[0]}         # <not supported> / <not counted>
+    v = lambda k: ev.get(k, {}).get("value")                          # noqa: E731
+    R[f"perf_stat_{name}"] = {"cmd": " ".join(Path(c).name if "/" in c else c for c in cmd), "repeats": repeats,
+                              "events": ev,
+                              "ipc": v("instructions") / v("cycles") if v("cycles") else None,
+                              "cache_miss_pct": 100 * v("cache-misses") / v("cache-references") if v("cache-references") else None,
+                              "branch_miss_pct": 100 * v("branch-misses") / v("branches") if v("branches") else None}
+
+
+def fold_perf_script(text: str, python: bool = False) -> Counter:
+    """`perf script` stacks (leaf first, one frame per line) -> folded "root;...;leaf" counts.
+
+    With ``python``, keep only the Python frames that `-X perf` names (``py::func:/path/file.py``),
+    plus the native function at the leaf (where the interpreter or a C builtin spent the sample).
+    """
+    folded, frames = Counter(), []
+    for ln in text.splitlines() + [""]:
+        if not ln.strip():
+            if frames:
+                if python:
+                    py = [f for f in frames if not f.startswith("[native] ")]
+                    leaf = [] if frames[0] in py else [frames[0]]
+                    frames = leaf + py if py else ["[native] (outside Python code)"]
+                folded[";".join(reversed(frames))] += 1
+            frames = []
+            continue
+        if ln[0].isspace():
+            parts = ln.strip().split(None, 1)
+            sym = parts[1] if len(parts) > 1 else "[unknown]"
+            dso = re.search(r"\(([^()]*)\)$", sym)
+            sym = re.sub(r"\s*\([^()]*\)$", "", sym)
+            sym = re.sub(r"\+0x[0-9a-f]+$", "", sym)
+            sym = re.sub(r"::h[0-9a-f]{16}$", "", sym)                  # Rust legacy-mangling hash
+            if sym == "[unknown]" and dso:
+                sym = f"[unknown] ({Path(dso[1]).name})"
+            if python:
+                if sym.startswith("py::"):
+                    func, _, path = sym[4:].partition(":")
+                    sym = f"{func} ({re.sub(r'^.*?/(site-packages|src|python3[.][0-9]+)/', '', path)})"
+                else:
+                    sym = f"[native] {sym}"
+            frames.append(sym)
+    return folded
+
+
+def perf_record(name, cmd, call_graph, env=None):
+    """Sample user-space call stacks with perf, then fold `perf script` output for a flame graph.
+
+    `cycles:u`: with perf_event_paranoid at 1 kernel samples are allowed, but kptr_restrict hides
+    the kernel's symbols, so they would only add [unknown] frames."""
+    data = OUT / f"perf.{name}.data"
+    p = run(["perf", "record", "-e", "cycles:u", "-F", "4999", "--call-graph", call_graph, "-o", str(data), "--", *cmd],
+            env=env)
+    script = run(["perf", "script", "-i", str(data)]).stdout
+    folded = fold_perf_script(script, python="-X" in cmd)
+    (OUT / f"perf_{name}.folded").write_text("".join(f"{k} {v}\n" for k, v in sorted(folded.items())))
+    lost = re.search(r"(\d+) lost", p.stderr)
+    R[f"perf_record_{name}"] = {"cmd": " ".join(Path(c).name if "/" in c else c for c in cmd),
+                                "call_graph": call_graph, "samples": sum(folded.values()),
+                                "lost_chunks": int(lost[1]) if lost else 0, **folded_tables(OUT / f"perf_{name}.folded")}
+    data.unlink()                                                     # tens of MB of raw samples
 
 
 # ── 2. py-spy profiles ───────────────────────────────────────────────────
@@ -184,7 +268,15 @@ if __name__ == "__main__":
     R["cpu"] = lscpu()
     R["loadavg_start"] = Path("/proc/loadavg").read_text().split()[:3]
     assert shutil.which("py-spy") and shutil.which("valgrind") and RUST.exists()
-    perf_check()
+    if perf_check():
+        perf_stat("rust", RUST_PERF)
+        perf_stat("python", DISAGG)
+        perf_record("rust", [str(RUST_FP), *RUST_PERF[1:]], "fp")
+        # -X perf names Python functions in perf's maps. Its trampolines unwind only through frame
+        # pointers, so use Ubuntu's own python3.12 (built with them), with this venv's packages.
+        site = next(Path(sys.prefix, "lib").glob("python3*/site-packages"))
+        env = {**os.environ, "PYTHONPATH": os.pathsep.join([str(SANDBOX / "Disaggregated_Inference_Sim" / "src"), str(site)])}
+        perf_record("python", ["/usr/bin/python3", "-X", "perf", *DISAGG[1:]], "fp", env=env)
     pyspy("disagg_sim", DISAGG)
     pyspy("memsim", MEMSIM)
     cachegrind("rust", [str(RUST), "--n", "500", "--rate", "4", "--seed", "1"])

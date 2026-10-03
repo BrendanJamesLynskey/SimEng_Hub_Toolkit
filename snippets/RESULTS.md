@@ -161,21 +161,35 @@ WorkflowScript: 6: Invalid condition "allways" - valid conditions are [always, c
 | Demo_scripted | #1 | SUCCESS | 10 s | - | - |
 | Memory_System_Sim | #1 | SUCCESS | 207 s | (first build: none) | 31 |
 | Memory_System_Sim | #2 | SUCCESS | 206 s | True | 31 |
+| Memory_System_Sim | #3 | SUCCESS | 179 s | - | 31 |
+| Memory_System_Sim | #4 | SUCCESS | 189 s | True | 31 |
 | RTL_CoSim_NTT | #1 | FAILURE | 42 s | (first build: none) | - |
 | RTL_CoSim_NTT | #2 | FAILURE | 27 s | False | - |
 | RTL_CoSim_NTT | #3 | FAILURE | 27 s | False | - |
 | RTL_CoSim_NTT | #4 | SUCCESS | 348 s | False | 32 |
 | RTL_CoSim_NTT | #5 | SUCCESS | 410 s | True | 34 |
+| RTL_CoSim_NTT | #6 | SUCCESS | 296 s | - | 32 |
+| RTL_CoSim_NTT | #7 | SUCCESS | 445 s | True | 34 |
 | Rust_DES_Kernel | #1 | FAILURE | 215 s | (first build: none) | 46 |
 | Rust_DES_Kernel | #2 | SUCCESS | 214 s | False | 46 |
 | Rust_DES_Kernel | #3 | SUCCESS | 183 s | True | 46 |
 | Rust_DES_Kernel | #4 | FAILURE | 58 s | - | 46 |
 | Rust_DES_Kernel | #5 | SUCCESS | 174 s | False | 46 |
 | Rust_DES_Kernel | #6 | SUCCESS | 184 s | True | 46 |
+| Rust_DES_Kernel | #7 | FAILURE | 202 s | - | 47 |
+| Rust_DES_Kernel | #8 | FAILURE | 181 s | True | 47 |
+| Rust_DES_Kernel | #9 | SUCCESS | 205 s | False | 47 |
+| Rust_DES_Kernel | #10 | SUCCESS | 192 s | True | 47 |
 | SystemC_Accelerator_Model | #1 | SUCCESS | 151 s | (first build: none) | 32 |
 | SystemC_Accelerator_Model | #2 | SUCCESS | 42 s | True | 32 |
+| SystemC_Accelerator_Model | #3 | SUCCESS | 44 s | - | 32 |
+| SystemC_Accelerator_Model | #4 | SUCCESS | 40 s | True | 32 |
 | Torch_Sim_Frontend | #1 | SUCCESS | 385 s | (first build: none) | 41 |
 | Torch_Sim_Frontend | #2 | SUCCESS | 304 s | True | 41 |
+| Torch_Sim_Frontend | #3 | FAILURE | 138 s | - | 41 |
+| Torch_Sim_Frontend | #4 | FAILURE | 106 s | True | 41 |
+| Torch_Sim_Frontend | #5 | SUCCESS | 290 s | False | 41 |
+| Torch_Sim_Frontend | #6 | SUCCESS | 307 s | True | 41 |
 
 ### From the demo logs
 
@@ -253,71 +267,117 @@ All data here is the EXAMPLE issue log written by `t08/example_project.py` (fixe
 
 ## T11: Performance Analysis of Simulators and Systems
 
-Measured by `t11/run_t11.py` on Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (8 logical CPUs), Python 3.12.12, with a desktop session running (load average at the start: 2.83 2.88 2.15).
+Measured by `t11/run_t11.py` on Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (8 logical CPUs), Python 3.12.12, with a desktop session running (load average at the start: 1.32 1.81 3.17).
 
 ### perf as an unprivileged user
 
-* `kernel.perf_event_paranoid` is 4; `perf stat -e cycles,instructions -- true` exits with status 1: "Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open"
+* `kernel.perf_event_paranoid` is 1 (an administrator lowered it from 4, Ubuntu's default, on 2026-10-03); perf version 7.0.14 runs unprivileged. Before that, every perf command here was refused.
+
+### perf stat: hardware counters
+
+| Program | Runs | Time | Cycles | Instructions | IPC | LLC miss ratio | Branch miss ratio |
+|---|---|---|---|---|---|---|---|
+| Rust, 20k requests | 5 | 331 ms | 1.26 G | 2.59 G | 2.06 | 50.3% | 1.09% |
+| Python, 3k requests | 5 | 1,208 ms | 4.60 G | 6.30 G | 1.37 | 14.4% | 2.85% |
+
+### perf record: Rust `disagg-rs`, 20,000 requests (a frame-pointer build)
+
+1,723 user-space samples at 4,999 Hz (`perf record -e cycles:u -F 4999 --call-graph fp`); lost chunks: 0. Total time omits the entry-point frames that are on every stack.
+
+| Function | Self time | | Function | Total time |
+|---|---|---|---|---|
+| `core::slice::sort::unstable::quicksort::quicksort::<f64, <[f64]>::sort_unstable_by<<f64>::total_cmp>::{closure#0}>` | 37.6% | | `rust_des_kernel::disagg::metrics::summarise` | 63.5% |
+| `<rust_des_kernel::disagg::engine::Simulation>::run` | 14.7% | | `rust_des_kernel::disagg::metrics::dist` | 51.9% |
+| `rust_des_kernel::pymath::fmean` | 13.6% | | `core::slice::sort::unstable::quicksort::quicksort::<f64, <[f64]>::sort_unstable_by<<f64>::total_cmp>::{closure#0}>` | 38.7% |
+| `rust_des_kernel::disagg::metrics::summarise` | 6.1% | | `<rust_des_kernel::disagg::engine::Simulation>::run` | 33.2% |
+| `__memmove_sse2_unaligned_erms` | 4.8% | | `rust_des_kernel::pymath::fmean` | 13.6% |
+| `<rust_des_kernel::disagg::engine::Simulation>::start_decode` | 4.5% | | `<alloc::raw_vec::RawVec<usize>>::grow_one` | 6.9% |
+| `<rust_des_kernel::disagg::hardware::CostModel>::step_time` | 2.6% | | `<alloc::raw_vec::RawVecInner>::finish_grow` | 6.4% |
+| `_int_malloc` | 2.3% | | `__libc_realloc` | 5.9% |
+
+### perf record: Python with `-X perf` (Python frames, plus the native function at the leaf)
+
+8,091 user-space samples at 4,999 Hz (`perf record -e cycles:u -F 4999 --call-graph fp`); lost chunks: 0. Total time omits the entry-point frames that are on every stack.
+
+| Function | Self time | | Function | Total time |
+|---|---|---|---|---|
+| `[native] _PyEval_EvalFrameDefault` | 36.5% | | `main (disagg_sim/cli.py)` | 90.6% |
+| `[native] [unknown] (python3.12)` | 29.0% | | `run_once (disagg_sim/cli.py)` | 90.4% |
+| `[native] (outside Python code)` | 3.9% | | `simulate (disagg_sim/sim.py)` | 80.2% |
+| `[native] _PyObject_GenericGetAttrWithDict` | 2.8% | | `Simulation.run (disagg_sim/sim.py)` | 80.2% |
+| `[native] PyObject_Malloc` | 2.6% | | `Environment.run (site-packages/simpy/core.py)` | 80.2% |
+| `[native] PyObject_Free` | 2.1% | | `Environment.step (site-packages/simpy/core.py)` | 79.6% |
+| `[native] _PyType_Lookup` | 2.1% | | `Process._resume (site-packages/simpy/events.py)` | 74.1% |
+| `[native] PyObject_GetAttr` | 1.6% | | `DecodeInstance.run (disagg_sim/sim.py)` | 58.4% |
 
 ### py-spy: Disaggregated_Inference_Sim (SimPy), 3,000 requests
 
-975 samples at 500 Hz; run took 2.05 s under py-spy.
+792 samples at 500 Hz; run took 1.63 s under py-spy.
 
 | Function (file) | Self time | | Function (file) | Total time |
 |---|---|---|---|---|
-| `decode_step_done (disagg_sim/sim.py)` | 15.0% | | `main (disagg_sim/cli.py)` | 95.5% |
-| `percentile (disagg_sim/metrics.py)` | 12.8% | | `run_once (disagg_sim/cli.py)` | 95.4% |
-| `decode_once (disagg_sim/sim.py)` | 8.2% | | `run (simpy/core.py)` | 76.1% |
-| `step_time (disagg_sim/hardware.py)` | 7.7% | | `run (disagg_sim/sim.py)` | 76.1% |
-| `step (disagg_sim/sim.py)` | 5.8% | | `simulate (disagg_sim/sim.py)` | 76.1% |
-| `decode_sum (disagg_sim/hardware.py)` | 4.3% | | `step (simpy/core.py)` | 74.3% |
-| `step (simpy/core.py)` | 4.0% | | `_resume (simpy/events.py)` | 70.2% |
-| `__init__ (<string>)` | 3.6% | | `decode_once (disagg_sim/sim.py)` | 52.3% |
+| `decode_step_done (disagg_sim/sim.py)` | 16.4% | | `main (disagg_sim/cli.py)` | 88.0% |
+| `decode_once (disagg_sim/sim.py)` | 7.3% | | `run_once (disagg_sim/cli.py)` | 87.8% |
+| `step_time (disagg_sim/hardware.py)` | 6.6% | | `simulate (disagg_sim/sim.py)` | 76.8% |
+| `__init__ (<string>)` | 5.8% | | `run (disagg_sim/sim.py)` | 76.8% |
+| `_dist (disagg_sim/metrics.py)` | 5.8% | | `run (simpy/core.py)` | 76.8% |
+| `_resume (simpy/events.py)` | 3.8% | | `step (simpy/core.py)` | 74.9% |
+| `step (disagg_sim/sim.py)` | 3.8% | | `_resume (simpy/events.py)` | 71.2% |
+| `decode_sum (disagg_sim/hardware.py)` | 3.5% | | `decode_once (disagg_sim/sim.py)` | 51.6% |
 
 ### py-spy: Memory_System_Sim, 20,000 random requests on one HBM pseudo-channel
 
-6,042 samples at 500 Hz; run took 12.13 s under py-spy.
+4,944 samples at 500 Hz; run took 9.92 s under py-spy.
 
 | Function (file) | Self time | | Function (file) | Total time |
 |---|---|---|---|---|
-| `run (memsim/controller.py)` | 40.3% | | `simulate (memsim/controller.py)` | 99.1% |
-| `t_act (memsim/controller.py)` | 19.0% | | `run (memsim/controller.py)` | 97.4% |
-| `_hits_queued (memsim/controller.py)` | 10.6% | | `t_act (memsim/controller.py)` | 19.0% |
-| `_bank (memsim/controller.py)` | 7.7% | | `_hits_queued (memsim/controller.py)` | 10.6% |
-| `t_col (memsim/controller.py)` | 7.6% | | `_bank (memsim/controller.py)` | 7.7% |
-| `consider (memsim/controller.py)` | 5.1% | | `t_col (memsim/controller.py)` | 7.6% |
-| `__eq__ (<string>)` | 3.2% | | `_col (memsim/controller.py)` | 5.3% |
-| `_dequeue (memsim/controller.py)` | 1.0% | | `consider (memsim/controller.py)` | 5.1% |
+| `run (memsim/controller.py)` | 40.9% | | `simulate (memsim/controller.py)` | 99.0% |
+| `t_act (memsim/controller.py)` | 19.5% | | `run (memsim/controller.py)` | 98.0% |
+| `_hits_queued (memsim/controller.py)` | 9.9% | | `t_act (memsim/controller.py)` | 19.5% |
+| `_bank (memsim/controller.py)` | 7.8% | | `_hits_queued (memsim/controller.py)` | 9.9% |
+| `t_col (memsim/controller.py)` | 7.3% | | `_bank (memsim/controller.py)` | 7.8% |
+| `consider (memsim/controller.py)` | 5.5% | | `t_col (memsim/controller.py)` | 7.3% |
+| `__eq__ (<string>)` | 3.0% | | `consider (memsim/controller.py)` | 5.5% |
+| `_col (memsim/controller.py)` | 1.2% | | `_col (memsim/controller.py)` | 5.1% |
 
 ### cachegrind: the same simulation in Rust and in Python (500 requests)
 
 | Implementation | Instructions | Instructions per request | I1 miss rate | D1 miss rate | LL miss rate |
 |---|---|---|---|---|---|
-| Rust (disagg-rs) | 59,162,943 | 118,325 | 0.01% | 3.2% | 0.1% |
-| Python (disagg-sim, SimPy) | 1,394,927,076 | 2,789,854 | 0.78% | 3.4% | 0.0% |
+| Rust (disagg-rs) | 55,728,681 | 111,457 | 0.01% | 1.5% | 0.1% |
+| Python (disagg-sim, SimPy) | 1,308,813,942 | 2,617,627 | 0.83% | 3.2% | 0.0% |
 
-* Start-up, measured separately: Python with the simulator's imports 286,627,513 instructions; a one-request Rust run 847,816. Net of start-up: Python 2,216,599 and Rust 116,630 instructions per request, 19x (gross: 24x).
+* Start-up, measured separately: Python with the simulator's imports 286,251,713 instructions; a one-request Rust run 856,841. Net of start-up: Python 2,045,124 and Rust 109,743 instructions per request, 19x (gross: 23x).
 
 Top functions in the Rust run, by instructions executed:
 
 | Function | Share of instructions |
 |---|---|
-| `sort::stable::quicksort::quicksort::<f64, <[f64]>::sort_by<<f64>::total_cmp>::{closure#0}>` | 45.4% |
-| `rust_des_kernel::pymath::fmean` | 17.1% |
-| `<rust_des_kernel::disagg::engine::Simulation>::run` | 11.7% |
+| `core::slice::sort::unstable::quicksort::quicksort::<f64, <[f64]>::sort_unstable_by<<f64>::total_cmp>::{closure#0}>` | 49.3% |
+| `rust_des_kernel::pymath::fmean` | 17.5% |
+| `<rust_des_kernel::disagg::engine::Simulation>::run` | 12.5% |
+
+### The Rust port's summary sort, before and after (cachegrind, 500 requests)
+
+The port already sorted each distribution once; the change was to an unstable sort, whose output is identical for floats ordered by `total_cmp`. The values sorted are the same in both runs (inter-token latencies, whose count the workload fixes).
+
+| Rust run | Instructions | In sorting functions | Share |
+|---|---|---|---|
+| before: stable sort (`sort_by`), uncorrected cost model | 59,162,943 | 30,467,704 | 51.5% |
+| after: unstable sort (`sort_unstable_by`), corrected cost model | 55,728,681 | 28,287,991 | 50.8% |
 
 ### Benchmark statistics
 
 | Benchmark | Runs | Median | Mean | Min | Max | CV | MAD | 95% CI of the median (bootstrap) |
 |---|---|---|---|---|---|---|---|---|
-| `disagg-rs`, whole process (wall clock) | 40 | 60.3 ms | 59.1 ms | 52.4 ms | 64.1 ms | 5.6% | 1.3 ms | 59.3 ms to 60.9 ms |
-| memsim, in-process repeats 2 to 40 | 39 | 891.1 ms | 893.5 ms | 866.5 ms | 966.5 ms | 2.2% | 7.4 ms | 885.6 ms to 896.7 ms |
+| `disagg-rs`, whole process (wall clock) | 40 | 51.9 ms | 52.7 ms | 48.1 ms | 67.4 ms | 7.0% | 1.9 ms | 50.6 ms to 53.0 ms |
+| memsim, in-process repeats 2 to 40 | 39 | 902.5 ms | 911.2 ms | 883.3 ms | 967.5 ms | 2.4% | 10.7 ms | 900.8 ms to 913.1 ms |
 
-memsim's first in-process run took 880.8 ms against a median of 891.1 ms for the rest (0.99x).
+memsim's first in-process run took 902.2 ms against a median of 902.5 ms for the rest (1.00x).
 
-Raw samples (ms), `disagg-rs` whole process: 61.1, 59.8, 61.2, 55.2, 52.5, 60.3, 61.7, 61.4, 62.6, 59.0, 61.1, 59.3, 57.6, 60.2, 59.9, 62.2, 57.2, 60.7, 61.8, 62.5, 52.7, 61.3, 60.5, 62.9, 53.6, 54.3, 52.4, 63.2, 59.0, 54.5, 59.4, 61.1, 60.5, 60.5, 59.6, 60.5, 52.5, 59.3, 64.1, 55.6
+Raw samples (ms), `disagg-rs` whole process: 49.8, 50.1, 51.0, 48.1, 56.5, 53.2, 54.4, 51.2, 57.7, 52.1, 50.0, 50.0, 53.7, 50.7, 55.2, 54.0, 52.9, 59.6, 52.6, 53.7, 53.1, 59.9, 55.6, 52.1, 51.7, 51.6, 50.2, 52.6, 50.5, 49.5, 49.8, 48.2, 50.5, 55.2, 51.6, 48.9, 52.3, 49.9, 50.0, 67.4
 
-Raw samples (ms), memsim in-process (first is warm-up): 880.8, 875.9, 893.4, 897.8, 898.5, 897.0, 897.9, 894.6, 880.1, 877.6, 896.8, 932.2, 966.5, 931.6, 925.7, 901.0, 887.8, 925.3, 888.1, 891.1, 897.4, 885.6, 874.7, 866.5, 876.7, 884.3, 887.2, 873.9, 891.5, 874.8, 870.4, 883.7, 895.0, 887.8, 892.7, 896.7, 890.4, 880.4, 904.5, 872.6
+Raw samples (ms), memsim in-process (first is warm-up): 902.2, 901.9, 893.4, 902.5, 945.7, 945.1, 967.5, 915.1, 902.0, 919.2, 905.0, 913.1, 898.5, 891.8, 890.2, 903.0, 899.1, 918.2, 901.0, 900.8, 909.7, 893.2, 901.8, 895.6, 887.6, 924.5, 911.5, 901.2, 890.6, 892.1, 883.3, 891.8, 887.1, 941.0, 951.9, 935.4, 966.9, 929.5, 908.6, 918.2
 
 ### Regression gates on noisy timings
 
@@ -325,33 +385,33 @@ Each row compares the median of k new runs with the median of k baseline runs, b
 
 | k runs each | Margin | False alarm (A/A) | Detects +5% | Detects +10% |
 |---|---|---|---|---|
-| 1 | 2% | 36.2% | 69.3% | 82.7% |
-| 1 | 5% | 22.8% | 48.5% | 76.2% |
-| 1 | 10% | 13.7% | 23.5% | 48.5% |
-| 3 | 2% | 29.2% | 77.1% | 89.8% |
-| 3 | 5% | 14.6% | 48.0% | 84.4% |
-| 3 | 10% | 6.6% | 15.2% | 48.0% |
-| 5 | 2% | 24.5% | 82.9% | 93.7% |
-| 5 | 5% | 10.0% | 47.8% | 89.3% |
-| 5 | 10% | 3.6% | 10.4% | 47.8% |
-| 10 | 2% | 16.4% | 90.2% | 98.6% |
-| 10 | 5% | 4.1% | 49.8% | 95.4% |
-| 10 | 10% | 0.5% | 4.5% | 49.8% |
+| 1 | 2% | 38.4% | 65.3% | 83.8% |
+| 1 | 5% | 25.0% | 48.4% | 73.8% |
+| 1 | 10% | 11.8% | 26.0% | 48.4% |
+| 3 | 2% | 34.8% | 71.5% | 92.7% |
+| 3 | 5% | 16.9% | 48.7% | 81.9% |
+| 3 | 10% | 4.3% | 18.2% | 48.7% |
+| 5 | 2% | 30.8% | 75.4% | 96.3% |
+| 5 | 5% | 11.6% | 47.9% | 86.5% |
+| 5 | 10% | 1.7% | 12.8% | 47.9% |
+| 10 | 2% | 25.1% | 83.6% | 99.5% |
+| 10 | 5% | 4.8% | 49.8% | 94.6% |
+| 10 | 10% | 0.1% | 5.5% | 49.8% |
 
 ### USE: a parallel sweep (8 rates x 4,000 requests, rayon)
 
 | Threads | Wall time | CPU | Utilisation of 8 CPUs | Max RSS | Voluntary switches | Involuntary switches |
 |---|---|---|---|---|---|---|
-| 1 | 0.56 s | 99% | 12.4% | 36.3 MB | 3 | 20 |
-| 8 | 0.20 s | 636% | 79.5% | 269.5 MB | 90 | 214 |
+| 1 | 0.47 s | 99% | 12.4% | 29.6 MB | 3 | 10 |
+| 8 | 0.17 s | 609% | 76.1% | 213.7 MB | 89 | 201 |
 
 ### The profile-first loop: sort once (`t11/profile_first.py`)
 
-Disaggregated_Inference_Sim, 3,000 requests at 4 req/s (the profiled run): `simulate` took 0.892 s; `summarise` sorts 763,474 inter-token latencies three times.
+Disaggregated_Inference_Sim, 3,000 requests at 4 req/s (the profiled run): `simulate` took 0.921 s; the original `summarise` sorted 763,474 inter-token latencies three times. Sorting once was applied to the simulator on 2026-10-03; the original is kept in the script for this comparison.
 
 | `summarise` | Median of 9 (alternating) | Runs (ms) |
 |---|---|---|
-| original: one sort per percentile | 308.7 ms | 309, 301, 309, 303, 322, 311, 319, 305, 308 |
-| sort once | 140.9 ms | 146, 135, 141, 141, 143, 135, 142, 134, 138 |
+| original: one sort per percentile | 316.3 ms | 318, 315, 302, 308, 317, 311, 329, 316, 317 |
+| sort once (applied) | 140.6 ms | 146, 139, 136, 140, 135, 142, 141, 151, 147 |
 
-* Speed-up of `summarise`: 2.19x; outputs identical: True. End to end (simulate + summarise): 1.20 s to 1.03 s (1.16x).
+* Speed-up of `summarise`: 2.25x; outputs identical: True. End to end (simulate + summarise): 1.24 s to 1.06 s (1.17x).

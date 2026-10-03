@@ -1,0 +1,229 @@
+Running as unit: run-r740bc5ce755a41118beedf427ebab11a.scope; invocation ID: 0797dcf30472416ea401ff11b1d0b055
+{
+ "cpu": "Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz",
+ "python": "3.12.12",
+ "loadavg_start": [
+  "1.32",
+  "1.81",
+  "3.17"
+ ],
+ "perf": {
+  "paranoid": "1",
+  "exit": 0,
+  "message": "",
+  "version": "perf version 7.0.14"
+ },
+ "perf_stat_rust": {
+  "cmd": "disagg-rs --n 20000 --rate 4 --seed 1",
+  "repeats": 5,
+  "events": {
+   "task-clock": {
+    "value": 331.01,
+    "var_pct": "2.05"
+   },
+   "cycles": {
+    "value": 1258086033.0,
+    "var_pct": "1.89"
+   },
+   "instructions": {
+    "value": 2594641346.0,
+    "var_pct": "0.16"
+   },
+   "cache-references": {
+    "value": 6177229.0,
+    "var_pct": "1.47"
+   },
+   "cache-misses": {
+    "value": 3108566.0,
+    "var_pct": "1.45"
+   },
+   "branches": {
+    "value": 269159935.0,
+    "var_pct": "0.23"
+   },
+   "branch-misses": {
+    "value": 2927064.0,
+    "var_pct": "0.93"
+   }
+  },
+  "ipc": 2.062371950678829,
+  "cache_miss_pct": 50.32298462627822,
+  "branch_miss_pct": 1.087481314780374
+ },
+ "perf_stat_python": {
+  "cmd": "python -m disagg_sim --requests 3000 --rate 4 --seed 1",
+  "repeats": 5,
+  "events": {
+   "task-clock": {
+    "value": 1207.93,
+    "var_pct": "0.41"
+   },
+   "cycles": {
+    "value": 4598954013.0,
+    "var_pct": "0.31"
+   },
+   "instructions": {
+    "value": 6295245359.0,
+    "var_pct": "0.21"
+   },
+   "cache-references": {
+    "value": 40096611.0,
+    "var_pct": "1.33"
+   },
+   "cache-misses": {
+    "value": 5777428.0,
+    "var_pct": "0.97"
+   },
+   "branches": {
+    "value": 1247346925.0,
+    "var_pct": "0.17"
+   },
+   "branch-misses": {
+    "value": 35590829.0,
+    "var_pct": "0.34"
+   }
+  },
+  "ipc": 1.368842858877267,
+  "cache_miss_pct": 14.408768860789756,
+  "branch_miss_pct": 2.8533223826242247
+ },
+ "perf_record_rust": {
+  "cmd": "disagg-rs --n 20000 --rate 4 --seed 1",
+  "call_graph": "fp",
+  "samples": 1723,
+  "lost_chunks": 0,
+  "self": [
+   [
+    "core::slice::sort::unstable::quicksort::quicksort::<f64, <[f64]>::sort_unstable_by<<f64>::total_cmp>::{closure#0}>",
+    37.6
+   ],
+   [
+    "<rust_des_kernel::disagg::engine::Simulation>::run",
+    14.7
+   ],
+   [
+    "rust_des_kernel::pymath::fmean",
+    13.6
+   ],
+   [
+    "rust_des_kernel::disagg::metrics::summarise",
+    6.1
+   ],
+   [
+    "__memmove_sse2_unaligned_erms",
+    4.8
+   ],
+   [
+    "<rust_des_kernel::disagg::engine::Simulation>::start_decode",
+    4.5
+   ],
+   [
+    "<rust_des_kernel::disagg::hardware::CostModel>::step_time",
+    2.6
+   ],
+   [
+    "_int_malloc",
+    2.3
+   ],
+   [
+    "[unknown] ([unknown])",
+    1.9
+   ],
+   [
+    "<rust_des_kernel::kernel::Scheduler<rust_des_kernel::disagg::engine::Ev>>::schedule_at",
+    1.2
+   ]
+  ],
+  "total": [
+   [
+    "_start",
+    99.7
+   ],
+   [
+    "std::sys::backtrace::__rust_begin_short_backtrace::<fn() -> std::process::ExitCode, std::process::ExitCode>",
+    99.7
+   ],
+   [
+    "main",
+    99.7
+   ],
+   [
+    "__libc_start_main_impl",
+    99.7
+   ],
+   [
+    "call_init",
+    99.7
+   ],
+   [
+    "__libc_start_call_main",
+    99.7
+   ],
+   [
+    "std::rt::lang_start::<std::process::ExitCode>::{closure#0}",
+    99.7
+   ],
+   [
+    "disagg_rs::main",
+    99.7
+   ],
+   [
+    "std::rt::lang_start_internal",
+    99.7
+   ],
+   [
+    "rust_des_kernel::disagg::metrics::summarise",
+    63.5
+   ]
+  ]
+ },
+ "perf_record_python": {
+  "cmd": "python3 -X perf -m disagg_sim --requests 3000 --rate 4 --seed 1",
+  "call_graph": "fp",
+  "samples": 8091,
+  "lost_chunks": 0,
+  "self": [
+   [
+    "[native] _PyEval_EvalFrameDefault",
+    36.5
+   ],
+   [
+    "[native] [unknown] (python3.12)",
+    29.0
+   ],
+   [
+    "[native] (outside Python code)",
+    3.9
+   ],
+   [
+    "[native] _PyObject_GenericGetAttrWithDict",
+    2.8
+   ],
+   [
+    "[native] PyObject_Malloc",
+    2.6
+   ],
+   [
+    "[native] PyObject_Free",
+    2.1
+   ],
+   [
+    "[native] _PyType_Lookup",
+    2.1
+   ],
+   [
+    "[native] PyObject_GetAttr",
+    1.6
+   ],
+   [
+    "[native] __memmove_sse2_unaligned_erms",
+    1.2
+   ],
+   [
+    "[native] PyObject_SetAttr",
+    1.1
+   ]
+  ],
+  "total": [
+   [
+   

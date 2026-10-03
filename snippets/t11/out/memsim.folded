@@ -1,159 +1,156 @@
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:185) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:265) 12
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1083);_repr_fn (dataclasses.py:628);_create_fn (dataclasses.py:461) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:161) 11
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:3) 7
-<module> (<string>:1);random_uniform (memsim/patterns.py:30) 8
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:142) 34
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:211) 37
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:163) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:210) 6
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:209) 24
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236) 138
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:124) 11
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234) 178
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:243) 5
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:2) 2
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1063);_init_fn (dataclasses.py:619);_create_fn (dataclasses.py:473) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246) 5
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:73) 6
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:218) 9
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:247) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:162) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:263) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:189);_emit (memsim/controller.py:153) 10
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:123) 15
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:137) 95
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:183);burst_cycles (memsim/timing.py:75) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:136) 590
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248) 6
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:245) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:187) 4
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74);field (memsim/mapping.py:69) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:195) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:138) 358
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:208) 31
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:233) 18
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170) 5
-<module> (<string>:1) 9
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:248) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:209) 7
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:210) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239) 332
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:8) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:208) 22
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:95);dataclass (dataclasses.py:1275);wrap (dataclasses.py:1264) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:212) 17
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:206) 15
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:95);dataclass (dataclasses.py:1275);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1063);_init_fn (dataclasses.py:619);_create_fn (dataclasses.py:473) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:200) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165);_emit (memsim/controller.py:153) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:167) 1
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1083);_repr_fn (dataclasses.py:628);_create_fn (dataclasses.py:473) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:209) 20
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:141) 7
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:158) 1
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1092);_cmp_fn (dataclasses.py:667);_create_fn (dataclasses.py:473) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234);_bank (memsim/controller.py:131) 30
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:164) 6
-<module> (<string>:1);simulate (memsim/controller.py:327) 8
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:181) 10
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74) 15
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:206) 36
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:244) 7
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:143) 198
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:203) 4
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:72) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:251) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170);_emit (memsim/controller.py:153) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239);_hits_queued (memsim/controller.py:118) 25
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:235) 206
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:268) 38
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:189) 7
-<module> (<string>:1);simulate (memsim/controller.py:326) 7
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:148) 186
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:157) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:139) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170);_emit (memsim/controller.py:154) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:211) 12
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165) 6
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239);_hits_queued (memsim/controller.py:118) 17
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241) 241
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:209) 13
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:201) 21
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236) 106
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:250) 12
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:4) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:252) 3
 <module> (<string>:1);efficiency (memsim/controller.py:293) 3
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:96);ChannelStats (memsim/controller.py:98) 1
-<module> (<string>:1);simulate (memsim/controller.py:325) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:126) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:144) 23
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:204) 15
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:212) 8
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:232) 248
-<module> (<string>:1);simulate (memsim/controller.py:329) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:183) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:211) 31
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:208) 14
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:174) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:217) 46
-<module> (<string>:1);simulate (memsim/controller.py:324) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165);_emit (memsim/controller.py:152) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:158) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:180) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:191) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:144) 12
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238) 355
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:5) 1
+<module> (<string>:1);simulate (memsim/controller.py:332);__init__ (memsim/controller.py:110) 1
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:73) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:185) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:226) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246) 12
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:184) 12
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:209) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:210) 1
+<module> (<string>:1);simulate (memsim/controller.py:333) 3
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:7) 5
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:208) 10
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:183) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:183);burst_cycles (memsim/timing.py:75) 1
 <module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:262) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:221) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234);_bank (memsim/controller.py:132) 434
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:184) 9
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:237) 64
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:3) 12
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:159) 8
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:169) 10
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:4) 179
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:212) 4
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74);field (memsim/mapping.py:70) 20
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:160) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:206) 24
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170);_emit (memsim/controller.py:155) 1
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:6) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:128) 14
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:4) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:249) 1
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:246) 3
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:274);dataclass (dataclasses.py:1275);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1092);_cmp_fn (dataclasses.py:667);_create_fn (dataclasses.py:473) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202) 8
-<module> (<string>:1);efficiency (memsim/controller.py:294);bandwidth_gbps (memsim/controller.py:289);cycles (memsim/controller.py:282);<genexpr> (memsim/controller.py:282) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:184);burst_cycles (memsim/timing.py:75) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:267) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165);_emit (memsim/controller.py:154) 1
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:5) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);<lambda> (memsim/controller.py:333) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:186) 5
-<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:40);dataclass (dataclasses.py:1275);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1092);_cmp_fn (dataclasses.py:667);_create_fn (dataclasses.py:473) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:231) 236
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:2) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:269) 2
-<module> (<string>:1);efficiency (memsim/controller.py:294);bandwidth_gbps (memsim/controller.py:289);cycles (memsim/controller.py:283) 4
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:135) 86
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:134) 18
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239);_hits_queued (memsim/controller.py:119) 618
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:201) 18
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:173) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:162);RC (memsim/timing.py:71) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238) 426
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127) 46
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:216) 3
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:168) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:250) 13
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:142) 44
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:208) 34
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:212) 11
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:228) 4
+ 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:141) 4
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1083);_repr_fn (dataclasses.py:628);_create_fn (dataclasses.py:473) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234) 153
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:181) 6
+<module> (<string>:1);simulate (memsim/controller.py:333);<lambda> (memsim/controller.py:333) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:212) 9
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:206) 15
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239);_hits_queued (memsim/controller.py:119) 470
+<module> (<string>:1);efficiency (memsim/controller.py:294);bandwidth_gbps (memsim/controller.py:289);cycles (memsim/controller.py:283) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:230) 12
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:199) 4
 <module> (<string>:1);efficiency (memsim/controller.py:294);bandwidth_gbps (memsim/controller.py:289);cycles (memsim/controller.py:282) 1
-<module> (<string>:1);efficiency (memsim/controller.py:294);bandwidth_gbps (memsim/controller.py:289);cycles (memsim/controller.py:283);<genexpr> (memsim/controller.py:283) 3
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:7) 2
- 6
-<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:249) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:206) 54
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:215) 22
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:180) 4
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:121) 1
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:149) 12
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:8) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:230) 5
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241) 289
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:252) 2
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:266) 1
-<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78) 11
-<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:122) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:159) 5
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74);field (memsim/mapping.py:69) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:268) 23
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:210) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:215) 15
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:211) 14
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308) 1
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:10) 1
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1114);_frozen_get_del_attr (dataclasses.py:642) 1
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1083);_repr_fn (dataclasses.py:635);_recursive_repr (dataclasses.py:256);update_wrapper (functools.py:58) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:210) 1
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74);field (memsim/mapping.py:70) 10
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:265) 17
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:208) 24
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:168) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:143) 157
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:251) 1
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:2) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:239) 223
+<module> (<string>:1);simulate (memsim/controller.py:327) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:162) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:212) 5
+<module> (<string>:1);simulate (memsim/controller.py:328) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:206) 35
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:8) 2
+<module> (<string>:1);random_uniform (memsim/patterns.py:30) 8
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:163) 8
+<module> (<string>:1);simulate (memsim/controller.py:325) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170) 6
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:25);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/timing.py:39);wrap (dataclasses.py:1265);_process_class (dataclasses.py:994);_get_field (dataclasses.py:816);_is_type (dataclasses.py:742) 1
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:32);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (dataclasses.py:5);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (inspect.py:149);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1310);_call_with_frames_removed (<frozen importlib._bootstrap>:488);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:995);get_code (<frozen importlib._bootstrap_external>:1085);path_stats (<frozen importlib._bootstrap_external>:1208);_path_stat (<frozen importlib._bootstrap_external>:147) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:148) 140
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:2) 1
+<module> (<string>:1) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:164) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:206) 53
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:244) 5
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202) 4
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:32);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (dataclasses.py:5);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (inspect.py:151);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (linecache.py:11);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (tokenize.py:39);compile (re/__init__.py:228);_compile (re/__init__.py:307);compile (re/_compiler.py:750);parse (re/_parser.py:979);_parse_sub (re/_parser.py:460);_parse (re/_parser.py:862);_parse_sub (re/_parser.py:460);_parse (re/_parser.py:641);tell (re/_parser.py:294) 5
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:235) 182
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:32);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (dataclasses.py:5);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (inspect.py:151);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1322);_find_spec (<frozen importlib._bootstrap>:1262);find_spec (<frozen importlib._bootstrap_external>:1532);_get_spec (<frozen importlib._bootstrap_external>:1504);_path_importer_cache (<frozen importlib._bootstrap_external>:1483) 1
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:6) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:189);_emit (memsim/controller.py:153) 7
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:122) 3
+<module> (<string>:1);simulate (memsim/controller.py:324) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234);_bank (memsim/controller.py:131) 30
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:124) 9
+<module> (<string>:1);simulate (memsim/controller.py:332);__init__ (memsim/controller.py:111);__init__ (memsim/controller.py:87) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:174) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:186) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:170);_emit (memsim/controller.py:153) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:234);_bank (memsim/controller.py:132) 356
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:4) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);consider (memsim/controller.py:209) 21
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:189) 9
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:161) 11
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:204) 12
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:216) 8
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:217) 25
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:187) 5
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:136) 506
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);__init__ (<string>:14) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:231) 191
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:138) 305
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127) 28
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:237) 61
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:173) 4
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:266) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:218) 8
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:247) 2
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:74) 9
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:211) 30
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:134) 7
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:135) 75
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:137) 69
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:248);_act (memsim/controller.py:165);_emit (memsim/controller.py:153) 8
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:269) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:245) 6
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253) 4
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:6) 1
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:4) 140
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:2) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:169) 18
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);consider (memsim/controller.py:211) 13
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:241);consider (memsim/controller.py:206) 28
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:57);dataclass (dataclasses.py:1275);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1092);_cmp_fn (dataclasses.py:667);_create_fn (dataclasses.py:473) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:200) 8
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:243) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:127);__eq__ (<string>:3) 6
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:246) 3
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:238);t_act (memsim/controller.py:139) 3
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:36);wrap (dataclasses.py:1265);_process_class (dataclasses.py:1089);_tuple_str (dataclasses.py:446) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:202);_enqueue (memsim/controller.py:123) 14
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:253);_pre (memsim/controller.py:167) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:263) 7
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:225) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:232) 220
+<module> (<string>:1);simulate (memsim/controller.py:326);decode (memsim/mapping.py:78);__init__ (<string>:3) 3
+<module> (<string>:1);simulate (memsim/controller.py:326) 3
+<module> (<string>:1);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/__init__.py:3);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/checker.py:15);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/controller.py:34);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/mapping.py:25);_find_and_load (<frozen importlib._bootstrap>:1360);_find_and_load_unlocked (<frozen importlib._bootstrap>:1331);_load_unlocked (<frozen importlib._bootstrap>:935);exec_module (<frozen importlib._bootstrap_external>:999);_call_with_frames_removed (<frozen importlib._bootstrap>:488);<module> (memsim/timing.py:39);wrap (dataclasses.py:1265);_process_class (dataclasses.py:983);_is_type (dataclasses.py:742) 1
+<module> (<string>:1);random_uniform (memsim/patterns.py:30);randrange (random.py:308);_randbelow_with_getrandbits (random.py:245) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:246);_col (memsim/controller.py:190);_dequeue (memsim/controller.py:128) 11
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:236);t_col (memsim/controller.py:149) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:261) 1
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:227) 2
+<module> (<string>:1);simulate (memsim/controller.py:333);run (memsim/controller.py:233) 9

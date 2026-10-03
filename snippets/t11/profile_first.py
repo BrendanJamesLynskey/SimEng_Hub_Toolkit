@@ -1,9 +1,10 @@
 """The profile-first loop, closed: the hot spot py-spy and cachegrind found, changed, and re-measured.
 
-py-spy put `percentile` among the top self-time functions of Disaggregated_Inference_Sim, and
-cachegrind put sorting at 45% of the Rust port's instructions. Both come from `_dist`, which
-sorts the same list three times (for p50, p90 and p99). This script sorts once instead, checks
-that `summarise` returns exactly the same answers, and times both versions, alternating.
+py-spy put `percentile` among the top self-time functions of Disaggregated_Inference_Sim: `_dist`
+sorted the same list three times (for p50, p90 and p99). The fix, sorting once, was applied to
+the simulator on 2026-10-03 (`disagg_sim.metrics._dist`). This script keeps the original
+three-sort version below, checks that `summarise` returns exactly the same answers with either,
+and times both, alternating.
 
 It also measures Python's start-up cost under cachegrind (interpreter and imports), and Rust's
 (a one-request run), so the instructions-per-request comparison can be made fair.
@@ -29,20 +30,21 @@ from disagg_sim.workload import LengthDist
 OUT = Path(sys.argv[1] if len(sys.argv) > 1 else "out")
 
 
-def _percentile_sorted(s: list[float], p: float) -> float:
-    """metrics.percentile without its sort: the same arithmetic, on an already sorted list."""
-    if not s:
+def _percentile_original(xs: list[float], p: float) -> float:
+    """The original metrics.percentile: sorts its input on every call."""
+    if not xs:
         return math.nan
+    s = sorted(xs)
     k = (len(s) - 1) * p / 100
     lo, hi = math.floor(k), math.ceil(k)
     return s[lo] + (s[hi] - s[lo]) * (k - lo)
 
 
-def _dist_sort_once(xs: list[float]) -> dict:
-    s = sorted(xs)
-    return {"mean": metrics.fmean(xs) if xs else math.nan, "p50": _percentile_sorted(s, 50),
-            "p90": _percentile_sorted(s, 90), "p99": _percentile_sorted(s, 99),
-            "max": s[-1] if s else math.nan}
+def _dist_original(xs: list[float]) -> dict:
+    """The original metrics._dist: three percentiles, three sorts."""
+    return {"mean": metrics.fmean(xs) if xs else math.nan, "p50": _percentile_original(xs, 50),
+            "p90": _percentile_original(xs, 90), "p99": _percentile_original(xs, 99),
+            "max": max(xs) if xs else math.nan}
 
 
 def main() -> None:
@@ -53,18 +55,18 @@ def main() -> None:
     t0 = time.perf_counter()
     res = simulate(cfg, wl)
     sim_s = time.perf_counter() - t0
-    original = metrics._dist
+    applied = metrics._dist                  # sort once, as applied on 2026-10-03
     before, after = [], []
     for _ in range(9):
-        metrics._dist = original
+        metrics._dist = _dist_original
         t0 = time.perf_counter()
         ref = summarise(res)
         before.append(time.perf_counter() - t0)
-        metrics._dist = _dist_sort_once
+        metrics._dist = applied
         t0 = time.perf_counter()
         new = summarise(res)
         after.append(time.perf_counter() - t0)
-    metrics._dist = original
+    metrics._dist = applied
     same = json.dumps(ref, sort_keys=True) == json.dumps(new, sort_keys=True)
     itl = sum(len(r.itls) for r in res.requests)
 
