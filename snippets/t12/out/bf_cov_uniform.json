@@ -1,0 +1,42 @@
+{
+ "prime": 1013309916174337,
+ "W": 50,
+ "n": 4000,
+ "stimulus": "uniform",
+ "received": 4000,
+ "errors": 0,
+ "coverage": {
+  "name": "butterfly",
+  "goal": 1,
+  "bins": {
+   "a_zero": 0,
+   "a_max": 0,
+   "b_zero": 0,
+   "b_max": 0,
+   "w_one": 0,
+   "w_max": 0,
+   "sum_wraps": 2016,
+   "sum_no_wrap": 1984,
+   "diff_borrows": 2020,
+   "diff_no_borrow": 1980,
+   "corr_0": 2281,
+   "corr_1": 1718,
+   "corr_2": 1,
+   "corr_2_x_sum_wraps": 0,
+   "corr_2_x_diff_borrows": 0,
+   "back_to_back": 2997,
+   "after_gap": 1003
+  },
+  "percent": 52.94117647058823,
+  "holes": [
+   "a_zero",
+   "a_max",
+   "b_zero",
+   "b_max",
+   "w_one",
+   "w_max",
+   "corr_2_x_sum_wraps",
+   "corr_2_x_diff_borrows"
+  ]
+ }
+}

@@ -1,0 +1,253 @@
+{
+ "torch": "2.14.1+cpu",
+ "onnxruntime": "1.30.0",
+ "threads": 4,
+ "torch_profiler": {
+  "plain_median_ms": 8.186525999917649,
+  "profiled_median_ms": 9.42407099500997,
+  "overhead": 1.151168517036991,
+  "events": 15270,
+  "top_self_cpu": [
+   {
+    "op": "aten::mm",
+    "calls": 450,
+    "self_cpu_ms": 132.83046399999964,
+    "share_pct": 50.907393623292236
+   },
+   {
+    "op": "aten::_scaled_dot_product_flash_attention_for_cpu",
+    "calls": 60,
+    "self_cpu_ms": 23.279298999999877,
+    "share_pct": 8.921812073676943
+   },
+   {
+    "op": "aten::mul",
+    "calls": 660,
+    "self_cpu_ms": 20.385761999999893,
+    "share_pct": 7.81286144151955
+   },
+   {
+    "op": "aten::index_select",
+    "calls": 30,
+    "self_cpu_ms": 14.475525999999881,
+    "share_pct": 5.547758231019934
+   },
+   {
+    "op": "aten::silu",
+    "calls": 60,
+    "self_cpu_ms": 10.971038000000128,
+    "share_pct": 4.204660084015854
+   },
+   {
+    "op": "aten::add",
+    "calls": 420,
+    "self_cpu_ms": 9.00850000000011,
+    "share_pct": 3.4525156477314947
+   },
+   {
+    "op": "aten::cat",
+    "calls": 180,
+    "self_cpu_ms": 4.557310999999649,
+    "share_pct": 1.7465934993703125
+   },
+   {
+    "op": "aten::pow",
+    "calls": 150,
+    "self_cpu_ms": 4.553584999999919,
+    "share_pct": 1.7451655065521392
+   }
+  ]
+ },
+ "ort_profiler": {
+  "plain_median_ms": 5.687844502972439,
+  "profiled_median_ms": 9.643486002460122,
+  "overhead": 1.6954552814199624,
+  "first_run_ms": 11.025172003428452,
+  "session_init_ms": 45.764,
+  "events": 6512,
+  "node_events": 6440,
+  "trace_kb": 6288,
+  "top_ops": [
+   {
+    "op": "MatMul",
+    "share_pct": 54.79700105828832
+   },
+   {
+    "op": "Mul",
+    "share_pct": 8.17802608611993
+   },
+   {
+    "op": "Add",
+    "share_pct": 4.935815500487912
+   },
+   {
+    "op": "Transpose",
+    "share_pct": 4.09983644635028
+   },
+   {
+    "op": "Where",
+    "share_pct": 2.8893332783573165
+   },
+   {
+    "op": "Pow",
+    "share_pct": 2.5343943704558884
+   },
+   {
+    "op": "Unsqueeze",
+    "share_pct": 2.3759947223023956
+   },
+   {
+    "op": "Concat",
+    "share_pct": 2.0695034291290426
+   }
+  ],
+  "excerpt": [
+   {
+    "cat": "Node",
+    "pid": 3327413,
+    "tid": 3327413,
+    "dur": 66,
+    "ts": 61078,
+    "ph": "X",
+    "name": "node_embedding_kernel_time",
+    "args": {
+     "mem_requested_in_use_delta": "131072",
+     "input_type_shape": [
+      {
+       "float": [
+        1000,
+        256
+       ]
+      },
+      {
+       "int64": [
+        1,
+        128
+       ]
+      }
+     ],
+     "mem_in_use_delta": "131072",
+     "thread_scheduling_stats": {
+      "main_thread": {
+       "thread_pool_name": "session-2-intra-op",
+       "thread_id": "135643100407616",
+       "block_size": [],
+       "core": -1,
+       "Distribution": 0,
+       "DistributionEnqueue": 0,
+       "Run": 0,
+       "Wait": 0,
+       "WaitRevoke": 0
+      },
+      "sub_threads": {
+       "135641811629760": {
+        "num_run": 0,
+        "core": -1
+       },
+       "135641803237056": {
+        "num_run": 0,
+        "core": -1
+       },
+       "135641794844352": {
+        "num_run": 0,
+        "core": -1
+       }
+      }
+     },
+     "mem_in_use_peak": "5882313",
+     "provider": "CPUExecutionProvider",
+     "node_index": "0",
+     "mem_arena_held_delta": "1048576",
+     "activation_size": "1024",
+     "mem_bytes_in_use": "5882313",
+     "mem_arena_held": "6799817",
+     "parameter_size": "1024000",
+     "output_type_shape": [
+      {
+       "float": [
+        1,
+        128,
+        256
+       ]
+      }
+     ],
+     "output_size": "131072",
+     "op_name": "Gather",
+     "mem_bytes_requested_in_use": "5882313"
+    }
+   },
+   {
+    "cat": "Node",
+    "pid": 3327413,
+    "tid": 3327413,
+    "dur": 35,
+    "ts": 61150,
+    "ph": "X",
+    "name": "node_pow_1_kernel_time",
+    "args": {
+     "activation_size": "131072",
+     "mem_in_use_delta": "131072",
+     "output_size": "131072",
+     "mem_bytes_in_use": "6013385",
+     "mem_arena_held": "6799817",
+     "output_type_shape": [
+      {
+       "float": [
+        1,
+        128,
+        256
+       ]
+      }
+     ],
+     "mem_in_use_peak": "6013385",
+     "input_type_shape": [
+      {
+       "float": [
+        1,
+        128,
+        256
+       ]
+      },
+      {
+       "float": []
+      }
+     ],
+     "mem_requested_in_use_delta": "131072",
+     "op_name": "Pow",
+     "provider": "CPUExecutionProvider",
+     "node_index": "95",
+     "thread_scheduling_stats": {
+      "main_thread": {
+       "thread_pool_name": "session-2-intra-op",
+       "thread_id": "135643100407616",
+       "block_size": [],
+       "core": -1,
+       "Distribution": 0,
+       "DistributionEnqueue": 0,
+       "Run": 0,
+       "Wait": 0,
+       "WaitRevoke": 0
+      },
+      "sub_threads": {
+       "135641811629760": {
+        "num_run": 0,
+        "core": -1
+       },
+       "135641803237056": {
+        "num_run": 0,
+        "core": -1
+       },
+       "135641794844352": {
+        "num_run": 0,
+        "core": -1
+       }
+      }
+     },
+     "parameter_size": "4",
+     "mem_arena_held_delta": "0",
+     "mem_bytes_requested_in_use": "6013385"
+    }
+   }
+  ]
+ }
+}

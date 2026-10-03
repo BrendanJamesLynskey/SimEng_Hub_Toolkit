@@ -1,0 +1,17 @@
+410885 events in 149.2 ms (2.75 M events/s)
+410885 events in 139.9 ms (2.94 M events/s)
+410885 events in 111.4 ms (3.69 M events/s)
+410885 events in 109.8 ms (3.74 M events/s)
+410885 events in 140.5 ms (2.92 M events/s)
+1266070349,,cycles,0.53%,95582111,27.00,,
+2656701145,,instructions,0.63%,127597219,36.00,,
+6164310,,cache-references,2.00%,128603567,36.00,,
+2985476,,cache-misses,2.11%,160649504,45.00,,
+275974295,,branches,0.57%,160523630,45.00,,
+3015337,,branch-misses,2.65%,159947208,45.00,,
+497366386,,L1-dcache-loads,0.72%,125879101,35.00,,
+19862811,,L1-dcache-load-misses,1.65%,123939659,35.00,,
+4526950,,LLC-loads,8.05%,64011262,18.00,,
+<not supported>,,LLC-load-misses,0.00%,0,100.00,,
+498474523,,dTLB-loads,0.59%,64003631,18.00,,
+1301486,,dTLB-load-misses,4.17%,63963204,18.00,,

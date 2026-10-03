@@ -1,0 +1,326 @@
+{
+ "python": "3.12.12",
+ "cpu": "Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz",
+ "loadavg_start": [
+  "1.09",
+  "0.96",
+  "0.77"
+ ],
+ "energy": {
+  "perf_pkg_systemwide": {
+   "exit": 1,
+   "stderr": "Error:\nNo supported events found.\nAccess to performance monitoring and observability operations is limited.\nConsider adjusting /proc/sys/kernel/perf_event_paranoid setting to open\naccess to performance monitoring and observability operations for processes\nwithout CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.\nMore information can be found at 'Perf events and tool security' document"
+  },
+  "perf_pkg_task": {
+   "exit": 1,
+   "stderr": "Error:\nNo supported events found.\nAccess to performance monitoring and observability operations is limited.\nConsider adjusting /proc/sys/kernel/perf_event_paranoid setting to open\naccess to performance monitoring and observability operations for processes\nwithout CAP_PERFMON, CAP_SYS_PTRACE or CAP_SYS_ADMIN Linux capability.\nMore information can be found at 'Perf events and tool security' document"
+  },
+  "rapl_sysfs": {
+   "path": "/sys/class/powercap/intel-rapl:0/energy_uj",
+   "mode": "0o400",
+   "owner_uid": 0,
+   "read": "PermissionError: Permission denied",
+   "max_energy_range_uj": 65532610987,
+   "constraint_0": "long_term",
+   "constraint_0_max_power_uw": 77000000
+  },
+  "perf_power_events": [
+   "power/energy-cores/",
+   "power/energy-gpu/",
+   "power/energy-pkg/"
+  ],
+  "nvidia_smi": null,
+  "dcgmi": null,
+  "gpu": "00:02.0 VGA compatible controller: Intel Corporation IvyBridge GT2 [HD Graphics 4000] (rev 09)"
+ },
+ "overheads": [
+  {
+   "key": "plain",
+   "label": "no tool",
+   "runs": 5,
+   "median_s": 1.2268046829995,
+   "samples": [
+    1.2309769449930172,
+    1.2645180019899271,
+    1.1899641499912832,
+    1.206923032994382,
+    1.2268046829995
+   ],
+   "slowdown": 1.0
+  },
+  {
+   "key": "cprofile",
+   "label": "cProfile (instrumenting every call)",
+   "runs": 3,
+   "median_s": 2.508262172996183,
+   "samples": [
+    2.5192092070064973,
+    2.508262172996183,
+    2.4881673930067336
+   ],
+   "slowdown": 2.044548906402573
+  },
+  {
+   "key": "pyspy100",
+   "label": "py-spy record, 100 Hz",
+   "runs": 3,
+   "median_s": 1.2858956600102829,
+   "samples": [
+    1.299027886998374,
+    1.2858956600102829,
+    1.2643457270023646
+   ],
+   "slowdown": 1.0481665727475926
+  },
+  {
+   "key": "pyspy500",
+   "label": "py-spy record, 500 Hz",
+   "runs": 3,
+   "median_s": 1.7813302899885457,
+   "samples": [
+    1.8402662080043228,
+    1.7813302899885457,
+    1.57257642300101
+   ],
+   "slowdown": 1.452008061815714
+  },
+  {
+   "key": "coverage",
+   "label": "coverage run (line coverage)",
+   "runs": 3,
+   "median_s": 3.177970346994698,
+   "samples": [
+    3.2776306820014725,
+    3.177970346994698,
+    3.0626005779922707
+   ],
+   "slowdown": 2.590445236339217
+  },
+  {
+   "key": "coverage_branch",
+   "label": "coverage run --branch",
+   "runs": 3,
+   "median_s": 3.494524162990274,
+   "samples": [
+    3.5261985029937932,
+    3.4793382299976656,
+    3.494524162990274
+   ],
+   "slowdown": 2.848476380483215
+  },
+  {
+   "key": "tracemalloc",
+   "label": "python -X tracemalloc=1 (one frame per allocation)",
+   "runs": 3,
+   "median_s": 5.789848386993981,
+   "samples": [
+    5.8392195500055095,
+    5.789848386993981,
+    5.779438879006193
+   ],
+   "slowdown": 4.71945409666841
+  },
+  {
+   "key": "tracemalloc25",
+   "label": "python -X tracemalloc=25 (25 frames)",
+   "runs": 3,
+   "median_s": 31.446921735012438,
+   "samples": [
+    31.59609725601331,
+    31.424894605006557,
+    31.446921735012438
+   ],
+   "slowdown": 25.633193425807335
+  }
+ ],
+ "cprofile_top": [
+  {
+   "function": "decode_step_done",
+   "file": "sim.py",
+   "calls": 53451,
+   "tottime": 0.39176914900000004,
+   "cumtime": 0.6030525210000001
+  },
+  {
+   "function": "<method 'append' of 'list' objects>",
+   "file": "(built-in)",
+   "calls": 1648545,
+   "tottime": 0.22354400700000002,
+   "cumtime": 0.22354400700000002
+  },
+  {
+   "function": "decode_once",
+   "file": "sim.py",
+   "calls": 106902,
+   "tottime": 0.16449407600000002,
+   "cumtime": 1.4286328350000002
+  },
+  {
+   "function": "step",
+   "file": "sim.py",
+   "calls": 111938,
+   "tottime": 0.126334149,
+   "cumtime": 0.247679691
+  },
+  {
+   "function": "step_time",
+   "file": "hardware.py",
+   "calls": 55969,
+   "tottime": 0.089052556,
+   "cumtime": 0.122722352
+  },
+  {
+   "function": "__init__",
+   "file": "<string>",
+   "calls": 55969,
+   "tottime": 0.085761691,
+   "cumtime": 0.085761691
+  },
+  {
+   "function": "sampler",
+   "file": "sim.py",
+   "calls": 15418,
+   "tottime": 0.08402069100000001,
+   "cumtime": 0.132215765
+  },
+  {
+   "function": "decode_sum",
+   "file": "hardware.py",
+   "calls": 53451,
+   "tottime": 0.08232344300000001,
+   "cumtime": 0.35571114000000004
+  }
+ ],
+ "cprofile_total_calls": 4296454,
+ "cprofile_total_s": 2.379161613999998,
+ "tracemalloc": {
+  "current": 36904020,
+  "peak": 51424292,
+  "top": [
+   [
+    "/home/brendan/Claude_sandbox/Disaggregated_Inference_Sim/src/disagg_sim/sim.py:132",
+    24858288,
+    766474
+   ],
+   [
+    "/home/brendan/Claude_sandbox/Disaggregated_Inference_Sim/src/disagg_sim/sim.py:476",
+    4980014,
+    46254
+   ],
+   [
+    "/home/brendan/Claude_sandbox/Disaggregated_Inference_Sim/src/disagg_sim/sim.py:477",
+    2358954,
+    61672
+   ],
+   [
+    "/home/brendan/Claude_sandbox/Disaggregated_Inference_Sim/src/disagg_sim/sim.py:475",
+    1711398,
+    30836
+   ],
+   [
+    "/home/brendan/Claude_sandbox/Disaggregated_Inference_Sim/src/disagg_sim/sim.py:472",
+    986368,
+    15412
+   ]
+  ]
+ },
+ "max_rss_kb": 78748,
+ "cachegrind": [
+  {
+   "key": "rust",
+   "label": "Rust disagg-rs, 500 requests",
+   "native_s": 0.009563776999129914,
+   "cachegrind_s": 0.8884484480076935,
+   "slowdown": 92.89723590256466
+  },
+  {
+   "key": "python",
+   "label": "Python disagg-sim, 500 requests",
+   "native_s": 0.2765539660031209,
+   "cachegrind_s": 18.58380962999945,
+   "slowdown": 67.19776938505281
+  }
+ ],
+ "perf_paranoid": "1",
+ "multiplex": {
+  "alone": {
+   "cycles": {
+    "value": 1261676429.0,
+    "variance_pct": "1.03",
+    "running_pct": 100.0
+   },
+   "instructions": {
+    "value": 2620114505.0,
+    "variance_pct": "0.32",
+    "running_pct": 100.0
+   }
+  },
+  "many": {
+   "cycles": {
+    "value": 1266070349.0,
+    "variance_pct": "0.53",
+    "running_pct": 27.0
+   },
+   "instructions": {
+    "value": 2656701145.0,
+    "variance_pct": "0.63",
+    "running_pct": 36.0
+   },
+   "cache-references": {
+    "value": 6164310.0,
+    "variance_pct": "2.00",
+    "running_pct": 36.0
+   },
+   "cache-misses": {
+    "value": 2985476.0,
+    "variance_pct": "2.11",
+    "running_pct": 45.0
+   },
+   "branches": {
+    "value": 275974295.0,
+    "variance_pct": "0.57",
+    "running_pct": 45.0
+   },
+   "branch-misses": {
+    "value": 3015337.0,
+    "variance_pct": "2.65",
+    "running_pct": 45.0
+   },
+   "L1-dcache-loads": {
+    "value": 497366386.0,
+    "variance_pct": "0.72",
+    "running_pct": 35.0
+   },
+   "L1-dcache-load-misses": {
+    "value": 19862811.0,
+    "variance_pct": "1.65",
+    "running_pct": 35.0
+   },
+   "LLC-loads": {
+    "value": 4526950.0,
+    "variance_pct": "8.05",
+    "running_pct": 18.0
+   },
+   "LLC-load-misses": {
+    "value": null,
+    "variance_pct": "0.00",
+    "running_pct": 100.0
+   },
+   "dTLB-loads": {
+    "value": 498474523.0,
+    "variance_pct": "0.59",
+    "running_pct": 18.0
+   },
+   "dTLB-load-misses": {
+    "value": 1301486.0,
+    "variance_pct": "4.17",
+    "running_pct": 18.0
+   }
+  }
+ },
+ "retries": [
+  "/home/brendan/Claude_sandbox/_simeng_build/.venv/bin/py-spy record -r 500",
+  "/home/brendan/Claude_sandbox/_simeng_build/.venv/bin/py-spy record -r 500",
+  "/home/brendan/Claude_sandbox/_simeng_build/.venv/bin/py-spy record -r 500"
+ ]
+}

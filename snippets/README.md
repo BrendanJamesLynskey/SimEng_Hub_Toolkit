@@ -18,6 +18,8 @@ in the build directory, which runs all of them.
 | `t07/*.Jenkinsfile`, `t07/shared-lib` | 07 | The matrix, scripted and shared-library pipelines (run as jobs on a local Jenkins), the library's `simRegression` step, and a Jenkinsfile with a deliberate typo for the linter |
 | `t08/example_project.py`, `t08/jql.py` | 08 | An EXAMPLE issue log for a fictional simulator team (fixed seed, not real Jira data), a small evaluator for the subset of JQL the deck uses, and its tests (`pytest test_jql.py`) |
 | `t11/run_t11.py`, `t11/profile_first.py`, `t11/out` | 11 | The profiling, cachegrind, benchmark and USE measurements (needs py-spy, valgrind and the simulators), the sort-once experiment, and the raw profiles and flame graphs they recorded |
+| `t12/run_t12.py`, `t12/framework_profilers.py`, `t12/rtl_coverage.py`, `t12/out` | 12 | What each tool costs on Disaggregated_Inference_Sim (cProfile, py-spy, coverage, tracemalloc, cachegrind), perf multiplexing, the RAPL and GPU probes, the PyTorch and ONNX Runtime profilers (Torch_Sim_Frontend's environment) and Verilator coverage of RTL_CoSim_NTT's butterfly (its environment) |
+| `t12/cacti` | 12 | `run_cacti.py`: a CACTI 7 sweep of SRAM capacity at 22 nm, with every configuration file (`configs/`) and CACTI's full output (`out/`) |
 
 Python dependencies: `pytest hypothesis pytest-xdist pytest-cov mutmut cocotb cmake py-spy` and
 [disagg-sim](https://github.com/BrendanJamesLynskey/Disaggregated_Inference_Sim) (and, for t11,

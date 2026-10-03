@@ -415,3 +415,150 @@ Disaggregated_Inference_Sim, 3,000 requests at 4 req/s (the profiled run): `simu
 | sort once (applied) | 140.6 ms | 146, 139, 136, 140, 135, 142, 141, 151, 147 |
 
 * Speed-up of `summarise`: 2.25x; outputs identical: True. End to end (simulate + summarise): 1.24 s to 1.06 s (1.17x).
+
+## T12: Measurement Tools and Methods
+
+Measured by the scripts in `t12/` on Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz, Python 3.12.12, with a desktop session running (load average at the start: 1.09 0.96 0.77).
+
+### What a tool costs: Disaggregated_Inference_Sim under each tool
+
+The same run (`python -m disagg_sim --requests 3000 --rate 4 --seed 1`) with no tool and under each tool; wall-clock time of the whole process, median of the runs shown.
+
+| Tool | Runs | Median | Slowdown | Runs (s) |
+|---|---|---|---|---|
+| no tool | 5 | 1.23 s | 1.00x | 1.23, 1.26, 1.19, 1.21, 1.23 |
+| cProfile (instrumenting every call) | 3 | 2.51 s | 2.04x | 2.52, 2.51, 2.49 |
+| py-spy record, 100 Hz | 3 | 1.29 s | 1.05x | 1.30, 1.29, 1.26 |
+| py-spy record, 500 Hz | 3 | 1.78 s | 1.45x | 1.84, 1.78, 1.57 |
+| coverage run (line coverage) | 3 | 3.18 s | 2.59x | 3.28, 3.18, 3.06 |
+| coverage run --branch | 3 | 3.49 s | 2.85x | 3.53, 3.48, 3.49 |
+| python -X tracemalloc=1 (one frame per allocation) | 3 | 5.79 s | 4.72x | 5.84, 5.79, 5.78 |
+| python -X tracemalloc=25 (25 frames) | 3 | 31.45 s | 25.63x | 31.60, 31.42, 31.45 |
+
+* py-spy at 500 Hz lost the race with the child's exit ("No child process") 3 time(s) in this session; those runs were repeated and are not in the table.
+
+### cProfile's report (the profiled run above)
+
+4,296,454 function calls; 2.38 s of profiled time.
+
+| Function | File | Calls | Own time (tottime) | Including callees (cumtime) |
+|---|---|---|---|---|
+| `decode_step_done` | sim.py | 53,451 | 0.392 s | 0.603 s |
+| `<method 'append' of 'list' objects>` | (built-in) | 1,648,545 | 0.224 s | 0.224 s |
+| `decode_once` | sim.py | 106,902 | 0.164 s | 1.429 s |
+| `step` | sim.py | 111,938 | 0.126 s | 0.248 s |
+| `step_time` | hardware.py | 55,969 | 0.089 s | 0.123 s |
+| `__init__` | <string> | 55,969 | 0.086 s | 0.086 s |
+
+### tracemalloc: where the Python heap goes (the same run, in-process)
+
+* Peak traced Python heap 49.0 MiB; still allocated at the end 35.2 MiB; the process's maximum resident set (`/usr/bin/time -v`, no tracing) 76.9 MiB.
+
+| Line (at the end of the run) | Size | Blocks |
+|---|---|---|
+| `src/disagg_sim/sim.py:132` | 23.7 MiB | 766,474 |
+| `src/disagg_sim/sim.py:476` | 4.7 MiB | 46,254 |
+| `src/disagg_sim/sim.py:477` | 2.2 MiB | 61,672 |
+| `src/disagg_sim/sim.py:475` | 1.6 MiB | 30,836 |
+
+### Cachegrind's slowdown
+
+| Program | Native (median of 5) | Under cachegrind | Slowdown |
+|---|---|---|---|
+| Rust disagg-rs, 500 requests | 9.6 ms | 0.89 s | 93x |
+| Python disagg-sim, 500 requests | 276.6 ms | 18.58 s | 67x |
+
+### perf stat: twelve events on a PMU with fewer counters (multiplexing)
+
+`perf stat -r 5` on `disagg-rs --n 20000`; `kernel.perf_event_paranoid` = 1. The last column is the share of the run each event was actually counted; perf scales the count up from it.
+
+| Event | Count (scaled) | Run-to-run variation | Counted for |
+|---|---|---|---|
+| cycles | 1,266,070,349 | 0.53% | 27% |
+| instructions | 2,656,701,145 | 0.63% | 36% |
+| cache-references | 6,164,310 | 2.00% | 36% |
+| cache-misses | 2,985,476 | 2.11% | 45% |
+| branches | 275,974,295 | 0.57% | 45% |
+| branch-misses | 3,015,337 | 2.65% | 45% |
+| L1-dcache-loads | 497,366,386 | 0.72% | 35% |
+| L1-dcache-load-misses | 19,862,811 | 1.65% | 35% |
+| LLC-loads | 4,526,950 | 8.05% | 18% |
+| LLC-load-misses | not supported on this CPU | - | - |
+| dTLB-loads | 498,474,523 | 0.59% | 18% |
+| dTLB-load-misses | 1,301,486 | 4.17% | 18% |
+
+* cycles: counted alone 1,261,676,429; multiplexed with eleven others 1,266,070,349 (+0.3%).
+
+* instructions: counted alone 2,620,114,505; multiplexed with eleven others 2,656,701,145 (+1.4%).
+
+### Energy and GPU telemetry on this machine
+
+* `perf stat -e power/energy-pkg/` (the RAPL package-energy event perf lists: power/energy-cores/, power/energy-gpu/, power/energy-pkg/): exit status 1, "No supported events found."; with `-a` (system-wide): exit status 1. RAPL events are system-wide, so they need perf_event_paranoid 0 or lower, or CAP_PERFMON.
+* `/sys/class/powercap/intel-rapl:0/energy_uj`: mode 400, owned by uid 0; reading it as a user: PermissionError: Permission denied. The world-readable `max_energy_range_uj` next to it is 65,532,610,987 µJ: the counter wraps after 65.5 kJ, about 14 minutes at the package's 77 W `long_term` limit.
+* `nvidia-smi`: not installed; `dcgmi`: not installed. The only GPU is "Intel Corporation IvyBridge GT2 [HD Graphics 4000] (rev 09)". No GPU or energy reading appears in the deck as a measurement.
+
+### PyTorch profiler and ONNX Runtime profiler: the same model on a CPU
+
+Torch_Sim_Frontend's two-layer tiny Llama, random float32 weights, one 128-token prompt, no KV cache, 4 threads; PyTorch 2.14.1+cpu, ONNX Runtime 1.30.0. Medians of 30 forward passes.
+
+| Runtime | Plain | Profiled | Overhead | Events recorded |
+|---|---|---|---|---|
+| PyTorch eager, `torch.profiler` (CPU activity, shapes) | 8.19 ms | 9.42 ms | 1.15x | 15,270 (30 passes) |
+| ONNX Runtime CPU EP, `enable_profiling` | 5.69 ms | 9.64 ms | 1.70x | 6,512 (6,288 KB of JSON for 35 runs) |
+
+* ONNX Runtime: session initialisation 45.8 ms; first run 11.0 ms against a median of 9.6 ms afterwards.
+
+| PyTorch operator | Calls | Self CPU share | | ONNX operator type | Share of node time |
+|---|---|---|---|---|---|
+| `aten::mm` | 450 | 50.9% | | MatMul | 54.8% |
+| `aten::_scaled_dot_product_flash_attention_for_cpu` | 60 | 8.9% | | Mul | 8.2% |
+| `aten::mul` | 660 | 7.8% | | Add | 4.9% |
+| `aten::index_select` | 30 | 5.5% | | Transpose | 4.1% |
+| `aten::silu` | 60 | 4.2% | | Where | 2.9% |
+| `aten::add` | 420 | 3.5% | | Pow | 2.5% |
+
+One node event from ONNX Runtime's profile (Chrome trace-event JSON, abridged):
+
+```
+{"cat": "Node", "pid": 3327413, "tid": 3327413, "dur": 66, "ts": 61078, "ph": "X", "name": "node_embedding_kernel_time", "args": {"op_name": "Gather", "provider": "CPUExecutionProvider", "input_type_shape": [{"float": [1000, 256]}, {"int64": [1, 128]}], "output_type_shape": [{"float": [1, 128, 256]}]}}
+```
+
+### Verilator coverage on the NTT butterfly (RTL_CoSim_NTT)
+
+`butterfly_random`, 4,000 transactions, the `mid` prime, Verilator 5.020, cocotb 1.9.2. Code coverage counted from `coverage.dat`; functional coverage from the testbench's own bins.
+
+| Build | Stimulus | Test result | Line | Branch | Toggle | Functional-coverage holes | Build | Run |
+|---|---|---|---|---|---|---|---|---|
+| plain | uniform | passed | - | - | - | `a_zero`, `a_max`, `b_zero`, `b_max`, `w_one`, `w_max`, `corr_2_x_sum_wraps`, `corr_2_x_diff_borrows` | 13 s | 1.73 s |
+| plain | constrained | passed | - | - | - | none | 13 s | 1.52 s |
+| plain + bug | uniform | passed (bug missed) | - | - | - | `a_zero`, `a_max`, `b_zero`, `b_max`, `w_one`, `w_max`, `corr_2_x_sum_wraps`, `corr_2_x_diff_borrows` | 12 s | 1.66 s |
+| plain + bug | constrained | FAILED (bug caught) | - | - | - | none | 12 s | 1.58 s |
+| cov | uniform | passed | 7/7 | 4/4 | 1664/1836 | `a_zero`, `a_max`, `b_zero`, `b_max`, `w_one`, `w_max`, `corr_2_x_sum_wraps`, `corr_2_x_diff_borrows` | 30 s | 1.95 s |
+| cov | constrained | passed | 7/7 | 4/4 | 1664/1836 | none | 30 s | 1.96 s |
+| cov + bug | uniform | passed (bug missed) | 4/4 | 6/6 | 1664/1836 | `a_zero`, `a_max`, `b_zero`, `b_max`, `w_one`, `w_max`, `corr_2_x_sum_wraps`, `corr_2_x_diff_borrows` | 30 s | 1.97 s |
+| cov + bug | constrained | FAILED (bug caught) | 4/4 | 6/6 | 1664/1836 | none | 30 s | 1.93 s |
+
+### CACTI 7: SRAM scratchpad area, energy and timing against capacity (22 nm)
+
+HewlettPackard/cacti commit `1ffd8dfb10`, built here (`make`, the default single-threaded build). Configuration: the upstream `cache.cfg` with `-technology (u) 0.022`, `-cache type "ram"` (a scratchpad, no tag array), `-associativity 1`, 64-byte blocks, one read/write port, a 512-bit bus, 360 K, CACTI's default optimisation (ED^2); only size, bank count and the cell/peripheral type vary. Every configuration file is in `t12/cacti/configs/` and CACTI's full output in `t12/cacti/out/`. Read and write energies are per 64-byte access. Leakage is for all banks.
+
+| Capacity | Cells | Banks | Area (mm²) | mm² per MiB | Read energy (nJ) | pJ per bit read | Write energy (nJ) | Leakage (mW) | Access time (ns) | Cycle time (ns) | Area efficiency |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 64 KiB | itrs-hp | 1 | 0.055 | 0.883 | 0.0150 | 0.029 | 0.0452 | 20.91 | 0.378 | 0.346 | 75.5% |
+| 256 KiB | itrs-hp | 1 | 0.293 | 1.171 | 0.0473 | 0.092 | 0.0699 | 77.25 | 0.628 | 0.613 | 56.9% |
+| 1 MiB | itrs-hp | 1 | 1.079 | 1.079 | 0.1118 | 0.218 | 0.1192 | 296.23 | 1.198 | 1.619 | 61.8% |
+| 4 MiB | itrs-hp | 1 | 4.290 | 1.072 | 0.2499 | 0.488 | 0.2572 | 1,184.93 | 2.140 | 1.619 | 62.2% |
+| 16 MiB | itrs-hp | 1 | 15.977 | 0.999 | 0.5240 | 1.023 | 0.5694 | 4,916.85 | 3.731 | 0.613 | 66.8% |
+| 64 MiB | itrs-hp | 1 | 57.264 | 0.895 | 1.0320 | 2.016 | 1.1229 | 19,616.50 | 6.703 | 0.613 | 74.5% |
+| 64 KiB | itrs-lstp | 1 | 0.061 | 0.975 | 0.0240 | 0.047 | 0.0352 | 0.02 | 1.013 | 1.272 | 68.4% |
+| 256 KiB | itrs-lstp | 1 | 0.286 | 1.144 | 0.0606 | 0.118 | 0.0641 | 0.06 | 1.622 | 2.558 | 58.3% |
+| 1 MiB | itrs-lstp | 1 | 1.284 | 1.284 | 0.1362 | 0.266 | 0.1397 | 0.25 | 2.716 | 2.558 | 52.0% |
+| 4 MiB | itrs-lstp | 1 | 3.886 | 0.971 | 0.2777 | 0.542 | 0.2544 | 0.96 | 5.068 | 7.457 | 68.6% |
+| 16 MiB | itrs-lstp | 1 | 15.136 | 0.946 | 0.6242 | 1.219 | 0.6392 | 3.92 | 8.561 | 2.967 | 70.5% |
+| 64 MiB | itrs-lstp | 1 | 57.014 | 0.891 | 1.2132 | 2.370 | 1.2283 | 15.69 | 15.484 | 2.967 | 74.9% |
+| 64 MiB | itrs-hp | 8 | 66.487 | 1.039 | 1.0709 | 2.092 | 1.0856 | 19,345.04 | 6.996 | 1.619 | 64.2% |
+| 64 MiB | itrs-hp | 32 | 66.623 | 1.041 | 1.0492 | 2.049 | 1.0641 | 21,485.28 | 7.158 | 1.844 | 64.1% |
+
+* CACTI took 0.27 to 3.51 s per configuration (26 s for all 14).
+* From 64 KiB to 64 MiB (1,024x the capacity, itrs-hp, one bank): area x1038, read energy per access x69, access time x17.7.
+* `itrs-hp` is ITRS high-performance logic transistors, `itrs-lstp` low-standby-power ones; the difference in leakage (over three orders of magnitude) is the transistor model, not the array.
