@@ -36,6 +36,8 @@ The engineering around a simulator: the languages its fast paths are written in,
 
 [LLM Inference Simulators](https://github.com/BrendanJamesLynskey/LLM_Hub_Inference_Simulators) teaches how to build, validate and accelerate a simulator; [FHE Accelerator Simulators](https://github.com/BrendanJamesLynskey/FHE_Hub_Accelerator_Simulators) applies that to an FHE accelerator. This series covers the engineering practice around both: the languages a simulator's fast core is written in, the hardware it must agree with, and the tests, pipelines, trackers and specifications that make its answers trustworthy. Every number quoted in a deck comes from a recorded run (`examples/results.md` in the code repos), and every code snippet is taken from code that compiles and is tested.
 
+**New to simulation?** Start with [Introduction to Simulation](https://github.com/BrendanJamesLynskey/Introduction_to_Simulation) ([live](https://brendanjameslynskey.github.io/Introduction_to_Simulation/)): the levels engineers simulate at, from field solvers and SPICE to RTL, architecture and system models, and the methods they share, with links into all three series.
+
 ## Glossary: concepts and where they are explained
 
 Every concept the decks rely on, with links to the slides that explain it in depth. The same glossary, with anchors each deck links to, is on the [live index](https://brendanjameslynskey.github.io/SimEng_Hub_Toolkit/#glossary).
