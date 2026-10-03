@@ -15,6 +15,10 @@ in the build directory, which runs all of them.
 | `t06/mutmut_weak`, `_medium`, `_strong` | 06 | Three test suites for one function, measured with mutmut and coverage |
 | `t06/gtest` | 06 | GoogleTest (fixtures, parameterised and death tests) built with ASan and UBSan |
 | `t06/cocotb` | 06 | A cocotb testbench for a modular adder on Icarus Verilog (`python run.py`) |
+| `t07/*.Jenkinsfile`, `t07/shared-lib` | 07 | The matrix, scripted and shared-library pipelines (run as jobs on a local Jenkins), the library's `simRegression` step, and a Jenkinsfile with a deliberate typo for the linter |
+| `t08/example_project.py`, `t08/jql.py` | 08 | An EXAMPLE issue log for a fictional simulator team (fixed seed, not real Jira data), a small evaluator for the subset of JQL the deck uses, and its tests (`pytest test_jql.py`) |
+| `t11/run_t11.py`, `t11/profile_first.py`, `t11/out` | 11 | The profiling, cachegrind, benchmark and USE measurements (needs py-spy, valgrind and the simulators), the sort-once experiment, and the raw profiles and flame graphs they recorded |
 
-Python dependencies: `pytest hypothesis pytest-xdist pytest-cov mutmut cocotb cmake` and
-[disagg-sim](https://github.com/BrendanJamesLynskey/Disaggregated_Inference_Sim). MIT licence for the code.
+Python dependencies: `pytest hypothesis pytest-xdist pytest-cov mutmut cocotb cmake py-spy` and
+[disagg-sim](https://github.com/BrendanJamesLynskey/Disaggregated_Inference_Sim) (and, for t11,
+[memsim](https://github.com/BrendanJamesLynskey/Memory_System_Sim)). MIT licence for the code.

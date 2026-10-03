@@ -1,0 +1,454 @@
+{
+ "cpu": "Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz",
+ "python": "3.12.12",
+ "loadavg_start": [
+  "2.83",
+  "2.88",
+  "2.15"
+ ],
+ "perf": {
+  "paranoid": "4",
+  "exit": 1,
+  "message": "Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open"
+ },
+ "pyspy_disagg_sim": {
+  "cmd": "/home/brendan/Claude_sandbox/_simeng_build/.venv/bin/python -m disagg_sim --requests 3000 --rate 4 --seed 1",
+  "wall_s": 2.05,
+  "samples": 975,
+  "self": [
+   [
+    "decode_step_done (disagg_sim/sim.py)",
+    15.0
+   ],
+   [
+    "percentile (disagg_sim/metrics.py)",
+    12.8
+   ],
+   [
+    "decode_once (disagg_sim/sim.py)",
+    8.2
+   ],
+   [
+    "step_time (disagg_sim/hardware.py)",
+    7.7
+   ],
+   [
+    "step (disagg_sim/sim.py)",
+    5.8
+   ],
+   [
+    "decode_sum (disagg_sim/hardware.py)",
+    4.3
+   ],
+   [
+    "step (simpy/core.py)",
+    4.0
+   ],
+   [
+    "__init__ (<string>)",
+    3.6
+   ],
+   [
+    "run (disagg_sim/sim.py)",
+    3.2
+   ],
+   [
+    "schedule (simpy/core.py)",
+    3.1
+   ]
+  ],
+  "total": [
+   [
+    "main (disagg_sim/cli.py)",
+    95.5
+   ],
+   [
+    "run_once (disagg_sim/cli.py)",
+    95.4
+   ],
+   [
+    "run (simpy/core.py)",
+    76.1
+   ],
+   [
+    "run (disagg_sim/sim.py)",
+    76.1
+   ],
+   [
+    "simulate (disagg_sim/sim.py)",
+    76.1
+   ],
+   [
+    "step (simpy/core.py)",
+    74.3
+   ],
+   [
+    "_resume (simpy/events.py)",
+    70.2
+   ],
+   [
+    "decode_once (disagg_sim/sim.py)",
+    52.3
+   ],
+   [
+    "decode (disagg_sim/hardware.py)",
+    19.4
+   ],
+   [
+    "summarise (disagg_sim/metrics.py)",
+    17.7
+   ]
+  ]
+ },
+ "pyspy_memsim": {
+  "cmd": "/home/brendan/Claude_sandbox/_simeng_build/.venv/bin/python -c '...'",
+  "wall_s": 12.13,
+  "samples": 6042,
+  "self": [
+   [
+    "run (memsim/controller.py)",
+    40.3
+   ],
+   [
+    "t_act (memsim/controller.py)",
+    19.0
+   ],
+   [
+    "_hits_queued (memsim/controller.py)",
+    10.6
+   ],
+   [
+    "_bank (memsim/controller.py)",
+    7.7
+   ],
+   [
+    "t_col (memsim/controller.py)",
+    7.6
+   ],
+   [
+    "consider (memsim/controller.py)",
+    5.1
+   ],
+   [
+    "__eq__ (<string>)",
+    3.2
+   ],
+   [
+    "_dequeue (memsim/controller.py)",
+    1.0
+   ],
+   [
+    "_col (memsim/controller.py)",
+    0.9
+   ],
+   [
+    "_act (memsim/controller.py)",
+    0.7
+   ]
+  ],
+  "total": [
+   [
+    "simulate (memsim/controller.py)",
+    99.1
+   ],
+   [
+    "run (memsim/controller.py)",
+    97.4
+   ],
+   [
+    "t_act (memsim/controller.py)",
+    19.0
+   ],
+   [
+    "_hits_queued (memsim/controller.py)",
+    10.6
+   ],
+   [
+    "_bank (memsim/controller.py)",
+    7.7
+   ],
+   [
+    "t_col (memsim/controller.py)",
+    7.6
+   ],
+   [
+    "_col (memsim/controller.py)",
+    5.3
+   ],
+   [
+    "consider (memsim/controller.py)",
+    5.1
+   ],
+   [
+    "_dequeue (memsim/controller.py)",
+    4.2
+   ],
+   [
+    "__eq__ (<string>)",
+    3.2
+   ]
+  ]
+ },
+ "cachegrind_rust": {
+  "I_refs": "59,162,943",
+  "I1_miss": "0.01",
+  "D_refs": "16,668,362",
+  "D1_miss": "3.2",
+  "LL_miss": "0.1",
+  "branches": null,
+  "top": [
+   [
+    "sort::stable::quicksort::quicksort::<f64, <[f64]>::sort_by<<f64>::total_cmp>::{closure#0}>",
+    "45.4"
+   ],
+   [
+    "rust_des_kernel::pymath::fmean",
+    "17.1"
+   ],
+   [
+    "<rust_des_kernel::disagg::engine::Simulation>::run",
+    "11.7"
+   ]
+  ]
+ },
+ "cachegrind_python": {
+  "I_refs": "1,394,927,076",
+  "I1_miss": "0.78",
+  "D_refs": "582,693,777",
+  "D1_miss": "3.4",
+  "LL_miss": "0.0",
+  "branches": null,
+  "top": []
+ },
+ "bench": {
+  "rust_process": {
+   "cmd": "disagg-rs --n 3000 --rate 4 --seed 1",
+   "samples": [
+    0.06111622499884106,
+    0.05980536500283051,
+    0.06118591900303727,
+    0.055218045999936294,
+    0.05254324099951191,
+    0.06033880299946759,
+    0.06168510800489457,
+    0.06137365400354611,
+    0.0625734530040063,
+    0.05902875999890966,
+    0.06106978400202934,
+    0.05925943100010045,
+    0.05759338200005004,
+    0.06024290799541632,
+    0.05991615799575811,
+    0.06221468099829508,
+    0.05722257900197292,
+    0.06068309099646285,
+    0.06178788000397617,
+    0.06246904299769085,
+    0.05272732799494406,
+    0.06127003699657507,
+    0.0605077229993185,
+    0.06288581500120927,
+    0.053570226998999715,
+    0.054270635002467316,
+    0.052400309999939054,
+    0.06317441999999573,
+    0.05896241900336463,
+    0.054541486999369226,
+    0.059404815001471434,
+    0.06110336100391578,
+    0.0605083209957229,
+    0.06049061099474784,
+    0.0596037509967573,
+    0.06054387699987274,
+    0.0524831950024236,
+    0.05926948400156107,
+    0.06410844600031851,
+    0.05561046399816405
+   ],
+   "n": 40,
+   "median": 0.06029085549744195,
+   "mean": 0.05911910592494678,
+   "min": 0.052400309999939054,
+   "max": 0.06410844600031851,
+   "stdev": 0.0032977340341865573,
+   "cv_pct": 5.578118922118199,
+   "mad": 0.0012952659963048063,
+   "ci95_median": [
+    0.05926445750083076,
+    0.060876437499246094
+   ]
+  },
+  "memsim_inprocess": {
+   "cmd": "simulate(hbm2e_pc, 6000 random requests)",
+   "samples": [
+    0.880815687996801,
+    0.8758644560002722,
+    0.893441645996063,
+    0.8978356049992726,
+    0.8985355040058494,
+    0.8969782689964632,
+    0.8979343660030281,
+    0.8946252790046856,
+    0.8801353660019231,
+    0.8775561549991835,
+    0.8967916869951296,
+    0.9322453339991625,
+    0.9665022250046604,
+    0.9315761069956352,
+    0.9257243809988722,
+    0.9010072239980218,
+    0.887776807998307,
+    0.9252897050027968,
+    0.8881433959977585,
+    0.8910728009941522,
+    0.8973820050014183,
+    0.885586983000394,
+    0.8747063159971731,
+    0.8664986379953916,
+    0.8766630410027574,
+    0.8842530449983315,
+    0.8872140789972036,
+    0.873889209004119,
+    0.8914748270035489,
+    0.8748489270001301,
+    0.8703957780016935,
+    0.8837160089969984,
+    0.8949765649958863,
+    0.8878068679987337,
+    0.8926967989973491,
+    0.8967079299982288,
+    0.8903887519991258,
+    0.8804360040012398,
+    0.904467566004314,
+    0.8726469550019829
+   ],
+   "n": 39,
+   "median": 0.8910728009941522,
+   "mean": 0.893481861794545,
+   "min": 0.8664986379953916,
+   "max": 0.9665022250046604,
+   "stdev": 0.019868253439961573,
+   "cv_pct": 2.2236885033185207,
+   "mad": 0.007356791997153778,
+   "ci95_median": [
+    0.885586983000394,
+    0.8967079299982288
+   ],
+   "first": 0.880815687996801
+  }
+ },
+ "gates": [
+  {
+   "k": 1,
+   "margin": 0.02,
+   "false_alarm": 0.36235,
+   "detects_5pct": 0.6929,
+   "detects_10pct": 0.82655
+  },
+  {
+   "k": 1,
+   "margin": 0.05,
+   "false_alarm": 0.2282,
+   "detects_5pct": 0.4852,
+   "detects_10pct": 0.7616
+  },
+  {
+   "k": 1,
+   "margin": 0.1,
+   "false_alarm": 0.1374,
+   "detects_5pct": 0.23535,
+   "detects_10pct": 0.4852
+  },
+  {
+   "k": 3,
+   "margin": 0.02,
+   "false_alarm": 0.29205,
+   "detects_5pct": 0.77145,
+   "detects_10pct": 0.89825
+  },
+  {
+   "k": 3,
+   "margin": 0.05,
+   "false_alarm": 0.14615,
+   "detects_5pct": 0.4802,
+   "detects_10pct": 0.84375
+  },
+  {
+   "k": 3,
+   "margin": 0.1,
+   "false_alarm": 0.06625,
+   "detects_5pct": 0.1517,
+   "detects_10pct": 0.4802
+  },
+  {
+   "k": 5,
+   "margin": 0.02,
+   "false_alarm": 0.24525,
+   "detects_5pct": 0.82915,
+   "detects_10pct": 0.93685
+  },
+  {
+   "k": 5,
+   "margin": 0.05,
+   "false_alarm": 0.1002,
+   "detects_5pct": 0.4779,
+   "detects_10pct": 0.89305
+  },
+  {
+   "k": 5,
+   "margin": 0.1,
+   "false_alarm": 0.0362,
+   "detects_5pct": 0.10385,
+   "detects_10pct": 0.4779
+  },
+  {
+   "k": 10,
+   "margin": 0.02,
+   "false_alarm": 0.1637,
+   "detects_5pct": 0.9023,
+   "detects_10pct": 0.986
+  },
+  {
+   "k": 10,
+   "margin": 0.05,
+   "false_alarm": 0.0407,
+   "detects_5pct": 0.49795,
+   "detects_10pct": 0.95435
+  },
+  {
+   "k": 10,
+   "margin": 0.1,
+   "false_alarm": 0.00515,
+   "detects_5pct": 0.0455,
+   "detects_10pct": 0.49795
+  }
+ ],
+ "use": {
+  "runs": [
+   {
+    "threads": 1,
+    "wall_s": 0.56,
+    "cpu_pct": 99,
+    "utilisation_pct": 12.4,
+    "max_rss_mb": 36.3,
+    "voluntary_cs": 3,
+    "involuntary_cs": 20
+   },
+   {
+    "threads": 8,
+    "wall_s": 0.2,
+    "cpu_pct": 636,
+    "utilisation_pct": 79.5,
+    "max_rss_mb": 269.5,
+    "voluntary_cs": 90,
+    "involuntary_cs": 214
+   }
+  ],
+  "cores": 8,
+  "loadavg_before": [
+   "1.71",
+   "2.56",
+   "2.10"
+  ]
+ }
+}

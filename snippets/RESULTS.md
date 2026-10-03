@@ -126,3 +126,232 @@ Mutants that survive the medium suite (100% coverage):
 * Seeded bug (`sum >= Q` changed to `sum > Q`): `TESTS=1 PASS=0 FAIL=1 SKIP=0`, first mismatch `65520 + 1: got 65521`
 
 Versions: cocotb 2.1.0, Hypothesis 6.168.3, pytest 9.1.1, pytest-xdist 3.8.0; Icarus Verilog version 12.0 (stable) (); g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0.
+
+## T07: Jenkins for Hardware and Simulation Teams
+
+From the local Jenkins (user space, 127.0.0.1:8080). The demo pipelines in `t07/` ran as jobs there.
+
+### The declarative linter (`/pipeline-model-converter/validate`)
+
+| Jenkinsfile | Verdict |
+|---|---|
+| `Rust_DES_Kernel/Jenkinsfile` | valid |
+| `RTL_CoSim_NTT/Jenkinsfile` | valid |
+| `Memory_System_Sim/Jenkinsfile` | valid |
+| `SystemC_Accelerator_Model/Jenkinsfile` | valid |
+| `Torch_Sim_Frontend/Jenkinsfile` | valid |
+| `t07/matrix.Jenkinsfile` | valid |
+| `t07/typo.Jenkinsfile` | 6: Invalid condition "allways" - valid conditions are [always, changed, fixed, regression, aborted, success, unsuccessful, unstable, failure, notBuilt, cleanup] @ line 6, column 10. |
+
+The linter's full answer for `typo.Jenkinsfile`:
+
+```
+Errors encountered validating Jenkinsfile:
+WorkflowScript: 6: Invalid condition "allways" - valid conditions are [always, changed, fixed, regression, aborted, success, unsuccessful, unstable, failure, notBuilt, cleanup] @ line 6, column 10.
+     post { allways { echo "typo" } }
+            ^
+```
+
+### Every build
+
+| Job | Build | Result | Duration | NIGHTLY | Tests (JUnit) |
+|---|---|---|---|---|---|
+| Demo_library | #1 | SUCCESS | 132 s | - | 31 |
+| Demo_matrix | #1 | SUCCESS | 37 s | - | - |
+| Demo_scripted | #1 | SUCCESS | 10 s | - | - |
+| Memory_System_Sim | #1 | SUCCESS | 207 s | (first build: none) | 31 |
+| Memory_System_Sim | #2 | SUCCESS | 206 s | True | 31 |
+| RTL_CoSim_NTT | #1 | FAILURE | 42 s | (first build: none) | - |
+| RTL_CoSim_NTT | #2 | FAILURE | 27 s | False | - |
+| RTL_CoSim_NTT | #3 | FAILURE | 27 s | False | - |
+| RTL_CoSim_NTT | #4 | SUCCESS | 348 s | False | 32 |
+| RTL_CoSim_NTT | #5 | SUCCESS | 410 s | True | 34 |
+| Rust_DES_Kernel | #1 | FAILURE | 215 s | (first build: none) | 46 |
+| Rust_DES_Kernel | #2 | SUCCESS | 214 s | False | 46 |
+| Rust_DES_Kernel | #3 | SUCCESS | 183 s | True | 46 |
+| Rust_DES_Kernel | #4 | FAILURE | 58 s | - | 46 |
+| Rust_DES_Kernel | #5 | SUCCESS | 174 s | False | 46 |
+| Rust_DES_Kernel | #6 | SUCCESS | 184 s | True | 46 |
+| SystemC_Accelerator_Model | #1 | SUCCESS | 151 s | (first build: none) | 32 |
+| SystemC_Accelerator_Model | #2 | SUCCESS | 42 s | True | 32 |
+| Torch_Sim_Frontend | #1 | SUCCESS | 385 s | (first build: none) | 41 |
+| Torch_Sim_Frontend | #2 | SUCCESS | 304 s | True | 41 |
+
+### From the demo logs
+
+`Demo_matrix` #1, the matrix cells:
+
+```
+[Pipeline] { (Branch: Matrix - PRESET = 'ddr4', PATTERN = 'stream')
+[Pipeline] { (Branch: Matrix - PRESET = 'hbm', PATTERN = 'stream')
+[Pipeline] { (Branch: Matrix - PRESET = 'ddr4', PATTERN = 'random')
+[Pipeline] { (Branch: Matrix - PRESET = 'hbm', PATTERN = 'random')
+[Pipeline] { (Branch: Matrix - PRESET = 'ddr4', PATTERN = 'stride')
+```
+
+`Demo_scripted` #1, the handled failure:
+
+```
+[Pipeline] { (Branch: ddr4/stream)
+[Pipeline] { (Branch: ddr4/random)
+[Pipeline] { (Branch: hbm/stream)
+[Pipeline] { (Branch: hbm/random)
+memsim: error: argument --preset: invalid choice: 'no-such-preset' (choose from 'ddr4', 'hbm')
+expected failure, handled: hudson.AbortException: script returned exit code 2
+```
+
+`Demo_library` #1, the shared library and the masked credential:
+
+```
+Loading library simeng-ci@main
+============================= 31 passed in 17.29s ==============================
+Masking supported pattern matches of $TOKEN
++ echo would upload results.md with token ****
+would upload results.md with token ****
+```
+
+## T08: Jira and Engineering Metrics
+
+All data here is the EXAMPLE issue log written by `t08/example_project.py` (fixed seed), not data from any Jira site. `t08/jql.py` is a small evaluator for the subset of JQL the deck uses.
+
+* Evaluator tests against hand-worked answers: `5 passed in 0.14s`
+
+### Worked queries
+
+| # | Question | JQL | Matches | Keys |
+|---|---|---|---|---|
+| 1 | Open work, most urgent first | `project = SIM AND type != Epic AND statusCategory != Done ORDER BY priority DESC, created ASC` | 11 | SIM-38, SIM-26, SIM-29, SIM-23, SIM-7, SIM-9, SIM-27, SIM-30, SIM-28, SIM-5, SIM-11 |
+| 2 | My work in the current sprint | `project = SIM AND sprint in openSprints() AND assignee = currentUser()` | 3 | SIM-5, SIM-9, SIM-23 |
+| 3 | Open bugs against the next release | `project = SIM AND type = Bug AND fixVersion = earliestUnreleasedVersion(SIM) AND resolution IS EMPTY` | 1 | SIM-38 |
+| 4 | Rework: sent back from review | `project = SIM AND status CHANGED FROM "In Review" TO "In Progress"` | 6 | SIM-12, SIM-22, SIM-25, SIM-31, SIM-35, SIM-36 |
+| 5 | Started before September, still open | `project = SIM AND status WAS "In Progress" BEFORE "2026/09/01" AND resolution IS EMPTY` | 2 | SIM-7, SIM-9 |
+| 6 | Validation work in the memory-model epic | `project = SIM AND parent = SIM-1 AND labels = validation` | 3 | SIM-10, SIM-32, SIM-35 |
+| 7 | Regressions reported in the last 30 days | `project = SIM AND type = Bug AND labels = regression AND created >= "-30d"` | 2 | SIM-37, SIM-38 |
+| 8 | Open, not mine (misses unassigned work) | `project = SIM AND type != Epic AND statusCategory != Done AND assignee != currentUser()` | 4 | SIM-7, SIM-11, SIM-29, SIM-38 |
+| 9 | Open, not mine, including unassigned | `project = SIM AND type != Epic AND statusCategory != Done AND (assignee != currentUser() OR assignee IS EMPTY)` | 8 | SIM-7, SIM-11, SIM-26, SIM-27, SIM-28, SIM-29, SIM-30, SIM-38 |
+| 10 | Bugs fixed in released versions | `project = SIM AND type = Bug AND fixVersion in releasedVersions(SIM)` | 4 | SIM-32, SIM-33, SIM-35, SIM-36 |
+| 11 | Reassigned work | `project = SIM AND assignee CHANGED` | 8 | SIM-11, SIM-13, SIM-20, SIM-22, SIM-26, SIM-27, SIM-29, SIM-33 |
+
+### Flow metrics from the workflow history
+
+| Metric | Value |
+|---|---|
+| Work items (epics excluded) | 34 |
+| Done | 23 |
+| Days observed | 84 |
+| Cycle time, median (days) | 10 |
+| Cycle time, 85th percentile (days) | 14 |
+| Cycle time, mean (days) | 9.83 |
+| Throughput (items per week) | 1.92 |
+| Average WIP, measured | 4.75 |
+| Little's law: throughput x mean cycle time | 2.69 |
+| Item-days in progress, finished items | 226 |
+| Item-days in progress, items still in flight | 173 |
+| Items in flight | 6 |
+| Ageing items (in flight longer than the 85th percentile) | SIM-23, SIM-9, SIM-7 |
+| Mean age of ageing items (days) | 51.3 |
+
+## T11: Performance Analysis of Simulators and Systems
+
+Measured by `t11/run_t11.py` on Intel(R) Core(TM) i7-3770 CPU @ 3.40GHz (8 logical CPUs), Python 3.12.12, with a desktop session running (load average at the start: 2.83 2.88 2.15).
+
+### perf as an unprivileged user
+
+* `kernel.perf_event_paranoid` is 4; `perf stat -e cycles,instructions -- true` exits with status 1: "Consider adjusting /proc/sys/kernel/perf_event_paranoid setting to open"
+
+### py-spy: Disaggregated_Inference_Sim (SimPy), 3,000 requests
+
+975 samples at 500 Hz; run took 2.05 s under py-spy.
+
+| Function (file) | Self time | | Function (file) | Total time |
+|---|---|---|---|---|
+| `decode_step_done (disagg_sim/sim.py)` | 15.0% | | `main (disagg_sim/cli.py)` | 95.5% |
+| `percentile (disagg_sim/metrics.py)` | 12.8% | | `run_once (disagg_sim/cli.py)` | 95.4% |
+| `decode_once (disagg_sim/sim.py)` | 8.2% | | `run (simpy/core.py)` | 76.1% |
+| `step_time (disagg_sim/hardware.py)` | 7.7% | | `run (disagg_sim/sim.py)` | 76.1% |
+| `step (disagg_sim/sim.py)` | 5.8% | | `simulate (disagg_sim/sim.py)` | 76.1% |
+| `decode_sum (disagg_sim/hardware.py)` | 4.3% | | `step (simpy/core.py)` | 74.3% |
+| `step (simpy/core.py)` | 4.0% | | `_resume (simpy/events.py)` | 70.2% |
+| `__init__ (<string>)` | 3.6% | | `decode_once (disagg_sim/sim.py)` | 52.3% |
+
+### py-spy: Memory_System_Sim, 20,000 random requests on one HBM pseudo-channel
+
+6,042 samples at 500 Hz; run took 12.13 s under py-spy.
+
+| Function (file) | Self time | | Function (file) | Total time |
+|---|---|---|---|---|
+| `run (memsim/controller.py)` | 40.3% | | `simulate (memsim/controller.py)` | 99.1% |
+| `t_act (memsim/controller.py)` | 19.0% | | `run (memsim/controller.py)` | 97.4% |
+| `_hits_queued (memsim/controller.py)` | 10.6% | | `t_act (memsim/controller.py)` | 19.0% |
+| `_bank (memsim/controller.py)` | 7.7% | | `_hits_queued (memsim/controller.py)` | 10.6% |
+| `t_col (memsim/controller.py)` | 7.6% | | `_bank (memsim/controller.py)` | 7.7% |
+| `consider (memsim/controller.py)` | 5.1% | | `t_col (memsim/controller.py)` | 7.6% |
+| `__eq__ (<string>)` | 3.2% | | `_col (memsim/controller.py)` | 5.3% |
+| `_dequeue (memsim/controller.py)` | 1.0% | | `consider (memsim/controller.py)` | 5.1% |
+
+### cachegrind: the same simulation in Rust and in Python (500 requests)
+
+| Implementation | Instructions | Instructions per request | I1 miss rate | D1 miss rate | LL miss rate |
+|---|---|---|---|---|---|
+| Rust (disagg-rs) | 59,162,943 | 118,325 | 0.01% | 3.2% | 0.1% |
+| Python (disagg-sim, SimPy) | 1,394,927,076 | 2,789,854 | 0.78% | 3.4% | 0.0% |
+
+* Start-up, measured separately: Python with the simulator's imports 286,627,513 instructions; a one-request Rust run 847,816. Net of start-up: Python 2,216,599 and Rust 116,630 instructions per request, 19x (gross: 24x).
+
+Top functions in the Rust run, by instructions executed:
+
+| Function | Share of instructions |
+|---|---|
+| `sort::stable::quicksort::quicksort::<f64, <[f64]>::sort_by<<f64>::total_cmp>::{closure#0}>` | 45.4% |
+| `rust_des_kernel::pymath::fmean` | 17.1% |
+| `<rust_des_kernel::disagg::engine::Simulation>::run` | 11.7% |
+
+### Benchmark statistics
+
+| Benchmark | Runs | Median | Mean | Min | Max | CV | MAD | 95% CI of the median (bootstrap) |
+|---|---|---|---|---|---|---|---|---|
+| `disagg-rs`, whole process (wall clock) | 40 | 60.3 ms | 59.1 ms | 52.4 ms | 64.1 ms | 5.6% | 1.3 ms | 59.3 ms to 60.9 ms |
+| memsim, in-process repeats 2 to 40 | 39 | 891.1 ms | 893.5 ms | 866.5 ms | 966.5 ms | 2.2% | 7.4 ms | 885.6 ms to 896.7 ms |
+
+memsim's first in-process run took 880.8 ms against a median of 891.1 ms for the rest (0.99x).
+
+Raw samples (ms), `disagg-rs` whole process: 61.1, 59.8, 61.2, 55.2, 52.5, 60.3, 61.7, 61.4, 62.6, 59.0, 61.1, 59.3, 57.6, 60.2, 59.9, 62.2, 57.2, 60.7, 61.8, 62.5, 52.7, 61.3, 60.5, 62.9, 53.6, 54.3, 52.4, 63.2, 59.0, 54.5, 59.4, 61.1, 60.5, 60.5, 59.6, 60.5, 52.5, 59.3, 64.1, 55.6
+
+Raw samples (ms), memsim in-process (first is warm-up): 880.8, 875.9, 893.4, 897.8, 898.5, 897.0, 897.9, 894.6, 880.1, 877.6, 896.8, 932.2, 966.5, 931.6, 925.7, 901.0, 887.8, 925.3, 888.1, 891.1, 897.4, 885.6, 874.7, 866.5, 876.7, 884.3, 887.2, 873.9, 891.5, 874.8, 870.4, 883.7, 895.0, 887.8, 892.7, 896.7, 890.4, 880.4, 904.5, 872.6
+
+### Regression gates on noisy timings
+
+Each row compares the median of k new runs with the median of k baseline runs, both resampled (20,000 trials) from the 40 measured `disagg-rs` runs. A/A: identical code. +5% and +10%: the new runs scaled by 1.05 and 1.10, a known regression.
+
+| k runs each | Margin | False alarm (A/A) | Detects +5% | Detects +10% |
+|---|---|---|---|---|
+| 1 | 2% | 36.2% | 69.3% | 82.7% |
+| 1 | 5% | 22.8% | 48.5% | 76.2% |
+| 1 | 10% | 13.7% | 23.5% | 48.5% |
+| 3 | 2% | 29.2% | 77.1% | 89.8% |
+| 3 | 5% | 14.6% | 48.0% | 84.4% |
+| 3 | 10% | 6.6% | 15.2% | 48.0% |
+| 5 | 2% | 24.5% | 82.9% | 93.7% |
+| 5 | 5% | 10.0% | 47.8% | 89.3% |
+| 5 | 10% | 3.6% | 10.4% | 47.8% |
+| 10 | 2% | 16.4% | 90.2% | 98.6% |
+| 10 | 5% | 4.1% | 49.8% | 95.4% |
+| 10 | 10% | 0.5% | 4.5% | 49.8% |
+
+### USE: a parallel sweep (8 rates x 4,000 requests, rayon)
+
+| Threads | Wall time | CPU | Utilisation of 8 CPUs | Max RSS | Voluntary switches | Involuntary switches |
+|---|---|---|---|---|---|---|
+| 1 | 0.56 s | 99% | 12.4% | 36.3 MB | 3 | 20 |
+| 8 | 0.20 s | 636% | 79.5% | 269.5 MB | 90 | 214 |
+
+### The profile-first loop: sort once (`t11/profile_first.py`)
+
+Disaggregated_Inference_Sim, 3,000 requests at 4 req/s (the profiled run): `simulate` took 0.892 s; `summarise` sorts 763,474 inter-token latencies three times.
+
+| `summarise` | Median of 9 (alternating) | Runs (ms) |
+|---|---|---|
+| original: one sort per percentile | 308.7 ms | 309, 301, 309, 303, 322, 311, 319, 305, 308 |
+| sort once | 140.9 ms | 146, 135, 141, 141, 143, 135, 142, 134, 138 |
+
+* Speed-up of `summarise`: 2.19x; outputs identical: True. End to end (simulate + summarise): 1.20 s to 1.03 s (1.16x).

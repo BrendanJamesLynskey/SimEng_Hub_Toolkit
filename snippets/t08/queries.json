@@ -1,0 +1,120 @@
+[
+ {
+  "title": "Open work, most urgent first",
+  "jql": "project = SIM AND type != Epic AND statusCategory != Done ORDER BY priority DESC, created ASC",
+  "keys": [
+   "SIM-38",
+   "SIM-26",
+   "SIM-29",
+   "SIM-23",
+   "SIM-7",
+   "SIM-9",
+   "SIM-27",
+   "SIM-30",
+   "SIM-28",
+   "SIM-5",
+   "SIM-11"
+  ]
+ },
+ {
+  "title": "My work in the current sprint",
+  "jql": "project = SIM AND sprint in openSprints() AND assignee = currentUser()",
+  "keys": [
+   "SIM-5",
+   "SIM-9",
+   "SIM-23"
+  ]
+ },
+ {
+  "title": "Open bugs against the next release",
+  "jql": "project = SIM AND type = Bug AND fixVersion = earliestUnreleasedVersion(SIM) AND resolution IS EMPTY",
+  "keys": [
+   "SIM-38"
+  ]
+ },
+ {
+  "title": "Rework: sent back from review",
+  "jql": "project = SIM AND status CHANGED FROM \"In Review\" TO \"In Progress\"",
+  "keys": [
+   "SIM-12",
+   "SIM-22",
+   "SIM-25",
+   "SIM-31",
+   "SIM-35",
+   "SIM-36"
+  ]
+ },
+ {
+  "title": "Started before September, still open",
+  "jql": "project = SIM AND status WAS \"In Progress\" BEFORE \"2026/09/01\" AND resolution IS EMPTY",
+  "keys": [
+   "SIM-7",
+   "SIM-9"
+  ]
+ },
+ {
+  "title": "Validation work in the memory-model epic",
+  "jql": "project = SIM AND parent = SIM-1 AND labels = validation",
+  "keys": [
+   "SIM-10",
+   "SIM-32",
+   "SIM-35"
+  ]
+ },
+ {
+  "title": "Regressions reported in the last 30 days",
+  "jql": "project = SIM AND type = Bug AND labels = regression AND created >= \"-30d\"",
+  "keys": [
+   "SIM-37",
+   "SIM-38"
+  ]
+ },
+ {
+  "title": "Open, not mine (misses unassigned work)",
+  "jql": "project = SIM AND type != Epic AND statusCategory != Done AND assignee != currentUser()",
+  "keys": [
+   "SIM-7",
+   "SIM-11",
+   "SIM-29",
+   "SIM-38"
+  ]
+ },
+ {
+  "title": "Open, not mine, including unassigned",
+  "jql": "project = SIM AND type != Epic AND statusCategory != Done AND (assignee != currentUser() OR assignee IS EMPTY)",
+  "keys": [
+   "SIM-7",
+   "SIM-11",
+   "SIM-26",
+   "SIM-27",
+   "SIM-28",
+   "SIM-29",
+   "SIM-30",
+   "SIM-38"
+  ]
+ },
+ {
+  "title": "Bugs fixed in released versions",
+  "jql": "project = SIM AND type = Bug AND fixVersion in releasedVersions(SIM)",
+  "keys": [
+   "SIM-32",
+   "SIM-33",
+   "SIM-35",
+   "SIM-36"
+  ]
+ },
+ {
+  "title": "Reassigned work",
+  "jql": "project = SIM AND assignee CHANGED",
+  "keys": [
+   "SIM-11",
+   "SIM-13",
+   "SIM-20",
+   "SIM-22",
+   "SIM-26",
+   "SIM-27",
+   "SIM-29",
+   "SIM-33"
+  ]
+ }
+]
