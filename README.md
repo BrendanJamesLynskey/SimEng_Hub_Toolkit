@@ -1,3 +1,7 @@
+<!-- portfolio-strip:start (brief 40) -->
+<sub>**Brendan Lynskey** · [Portfolio home](https://brendanjameslynskey.github.io/) · [Interactive sites](https://brendanjameslynskey.github.io/#sites)</sub>
+<!-- portfolio-strip:end -->
+
 # Simulation Engineering Toolkit
 
 The engineering around a simulator: the languages its fast paths are written in, the memory systems and RTL it must agree with, the tests, pipelines and trackers that keep it trustworthy, the specifications it is built to, the front ends that feed it real workloads, an accelerator model built end to end, the tools it is measured with, and the power, performance and area trade-offs it informs. Each deck is backed by a tested code repository, and every number in the decks comes from a recorded run.
